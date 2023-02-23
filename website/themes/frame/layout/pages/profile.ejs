@@ -1,0 +1,83 @@
+<div class="profile">
+    <div class="profile-image">
+        <% if (theme.profile.image) {%>
+            <img src="<%= url_for(theme.profile.image)%>" alt="featured_image">
+        <% } %>  
+    </div>
+    <div class="post-content profile-content">
+        <div class="profile-title">
+            🕸 What's WebSecurityClass? 🕸
+        </div>
+        <div class="profile-body">
+            <%=theme.profile.description%>
+        </div>
+        <div class="profile-title">
+            <a href="https://docs.google.com/document/d/1TQdDSg5UxOTd921etxHpi26TO-_0fW9X4wm_19ZiI5o/edit?usp=sharing">🧭 Syllabus: 🧭</a> 
+        </div>
+        <div class="profile-body">
+            <div class="profile-link">
+                <ol>
+                    <li> Introduction.</li> 
+                        <ul>
+                            <li>Web History.</li>
+                            <li>Basic knowledge.</li>
+                        </ul>
+                    <li> Web Today!</li>
+                        <ul>
+                            <li>Introduction</li>
+                            <li>Useful skills</li>
+                            <li>HSTS</li>
+                            <li>Iframes</li>
+                            <li>CDN</li>
+                            <li>Cookies</li>
+                            <li>Security Headers (SOP, CORS, CSP...)</li>
+                        </ul>
+                    <li> Application flaws.</li>
+                        <ul>
+                            <li>Introduction</li>
+                            <li>Cross-Site Scripting (XSS)</li>
+                            <li>Cross-Site Request Forgery (CSRF)</li>
+                            <li>Command Injection</li>
+                            <li>Server-Side Template Injection (SSTI)</li>
+                            <li>SQL injection (SQLi)</li>
+                            <li>DOM cloaking</li>
+                            <li>Prototype Pollution</li>
+                        </ul>
+                    <li> Browser Internals</li>
+                        <ul>
+                            <li>Introduction.</li>
+                            <li>Browser extensions.</li>
+                            <li>How a URL Scheme is interpreted.</li>
+                            <li><a href="/browser/custom.browser">How to build a browser on top of chromium. ☑️</a></li>
+                            <li><a href="/browser/web.to.app">Web-to-App Communication Overview. ☑️</a></li>
+                            <li>How Cache works (cache partitioning)</li>
+                            <li>Browser Processes</li>
+                        </ul>
+                    <li> V8</li>
+                        <ul>
+                            <li>Introduction.</li>
+                            <li>Prototypes.</li>
+                            <li>Memory Management.</li>
+                        </ul>
+                    <li> Advanced Topics</li>
+                        <ul>
+                            <li>Bot detection & Content Cloaking</li>
+                            <li>XS leaks</li>
+                            <li>Web Tracking</li>
+                            <li>Phising</li>
+                            <li>Browser Security</li>
+                            <li>Ad papers work</li>
+                            <li>Web Measurements</li>
+                            <li>InterPlanetary FileSystem in Web (IPFS)</li>
+                        </ul>
+                </ol>
+            </div>
+        </div>
+        <div class="profile">
+        </div>
+        <div class="profile-body">
+            Author 🫶🏽: <a href="https://twitter.com/alberto_fdr" target="_blank">@bubu</a>
+        </div>
+    </div>
+    
+</div>
