@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="bubu">
+
+
+
+    <meta name="description" content="Web Security Educational Course">
+
+
+
+
+
+<title>Treasure Planet: Web-to-App Communication 🪐 | WebSec!</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/menu.js"></script>
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HWYY8DJW4W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HWYY8DJW4W');
+</script>
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            WebSecurityClass!
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/about/">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="post-title">
+            
+            
+                Treasure Planet: Web-to-App Communication 🪐
+            
+            
+        </div>
+    </div>
+    <div class="h-line-primary"></div>
+</div>
+    <div class="post-content">
+    <div class="balloon_l">
+  <div class="faceicon"><img src="../icon/otter_says.png" alt="faceicon" ></div>
+  <p class="says">
+  Let's take Discord as an example. When you are surfing the internet and you click a button to join a discord channel, automatically, your desktop Discord app opens. In other words, a webpage is opening an application of your system. How the **** could be this possible? Is this really secure?
+  </p>
+</div>
+
+<h1 id="General-mechanisms"><a href="#General-mechanisms" class="headerlink" title="General mechanisms"></a>General mechanisms</h1><p>Actual browsers have different type of methods to handle the communication between Website to Applications. In this entry I will only focus in some of these mechanisms so, I highly encourage to read this serie of articles <a target="_blank" rel="noopener" href="https://textslashplain.com/2019/08/28/browser-architecture-web-to-app-communication-overview/">link</a> by <a target="_blank" rel="noopener" href="http://en.gravatar.com/ericlaw1979">ericlaw</a>. These articles provides a bigger picture and a detailed explainition of some of them. Also, he provides a really good discussion of the security risk inherited by this mechanisms. Following tables provides a summary list.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Mechanism</strong></th>
+<th><strong>DesktopOS independent</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>App protocol (websec:&#x2F;&#x2F;)</td>
+<td>Yes</td>
+<td>Fire-and-forget</td>
+</tr>
+<tr>
+<td>File downloads</td>
+<td>Yes</td>
+<td>Fire-and-forget</td>
+</tr>
+<tr>
+<td>Extension (Native Message API)</td>
+<td>Yes (¿Safari?)</td>
+<td>Bi-directional communication</td>
+</tr>
+<tr>
+<td>Drag&amp;Drop</td>
+<td>Yes</td>
+<td>Fire-and-forget</td>
+</tr>
+<tr>
+<td>System clipboard</td>
+<td>Yes</td>
+<td>Fire-and-forget</td>
+</tr>
+<tr>
+<td>Local Web Server</td>
+<td>Yes</td>
+<td>Bi-directional communication</td>
+</tr>
+<tr>
+<td>DirectInvoke&#x2F;ClickOnce</td>
+<td>Windows only</td>
+<td>Fire-and-forget</td>
+</tr>
+<tr>
+<td>getInstalledRelatedApps()</td>
+<td>Windows only <a target="_blank" rel="noopener" href="https://caniuse.com/mdn-api_navigator_getinstalledrelatedapps">(caniuse)</a></td>
+<td>Bi-directional communication</td>
+</tr>
+<tr>
+<td>AppLinks</td>
+<td>Deprecated</td>
+<td>Fire-and-forget</td>
+</tr>
+<tr>
+<td>Legacy Plugins&#x2F;Active X architecture</td>
+<td>Deprecated</td>
+<td>Bi-directional communication</td>
+</tr>
+</tbody></table>
+<p>Mobile specific:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Mechanism</strong></th>
+<th><strong>MobileOS independent</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Android Intents</td>
+<td>Android</td>
+<td>Fire-and-forget</td>
+</tr>
+<tr>
+<td>Android Instant Apps</td>
+<td>Android</td>
+<td>Fire-and-forget</td>
+</tr>
+</tbody></table>
+<p>Browser dev specific:</p>
+<ul>
+<li>Site-Locked Private APIs</li>
+<li>Native Url Protocols</li>
+</ul>
+<p>In the following sections I will focus in Application protocols and Local Web Servers.</p>
+<h1 id="App-protocols"><a href="#App-protocols" class="headerlink" title="App protocols"></a>App protocols</h1><p>A simple explanation of application protocols would be to define a new ‘protocol’. So, instead of using “http” or “file”, you define a new special key (e.g., ‘websec:&#x2F;&#x2F;‘). Defining a new protocol allows to describe how this protocol must be handle by the browser. In technical words, the idea is to define a new <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc1738">URL scheme</a> that will open a desktop application. As the reader might notice, improperly parsing URI schemes could produce <a target="_blank" rel="noopener" href="https://claroty.com/team82/research/exploiting-url-parsing-confusion">critical vulnerabilities</a>. One of the application I found that this mechanisms is used is Microsoft Teams (<a target="_blank" rel="noopener" href="https://teams.microsoft.com/dl/launcher/launcher.html?url=/_%23/l/entity/fe4a8eba-2a31-4737-8e33-e5fae6fee194/tasklist123?webUrl=https://tasklist.e8xample.com/123&label=Task%2520List%2520123&type=entity&deeplinkId=c2ae6d30-7df4-4499-a283-cb27605499c1&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true">msteams:&#x2F;&#x2F;</a>). In the following code snippet you can see how through the Chromium code comments developers could be also confused of URL parsing.</p>
+<p><img src="/browser/web.to.app/url_code_comment.png" alt="allowed"></p>
+<div class="column" title="URI scheme vs URL scheme">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+        Uniform Resource Identifier (URI) scheme identifies a resource using a name, location or both. Uniform Resource Locator (URL) scheme identifies the location of a unique resource. So, URL scheme is a subset of URI schemes defined by the syntax of: [scheme]://[user]:[password]@[host]:[port]/[url-path]. <a target="_blank" rel="noopener" href="https://danielmiessler.com/study/difference-between-uri-url/">More info</a>. <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc1738">RFC</a>.
+    </div>
+  </div>
+</div>
+
+<h3 id="Security-Risk"><a href="#Security-Risk" class="headerlink" title="Security Risk"></a>Security Risk</h3><p>These mechanisms inherits some security risks (e.g., Browser Sandbox Scape). As <a target="_blank" rel="noopener" href="http://en.gravatar.com/ericlaw1979">ericlaw</a> describe in his blog, main security risk are:</p>
+<p><em>“<strong>Input Sanitization:</strong> App Protocols were not designed with the expectation that the app could be exposed to potentially dangerous data from the web at large.”</em></p>
+<p><em>“<strong>Context information:</strong> When the protocol is invoked by the browser, it simply bundles up the URL and passes it on the command line to the target application. The app doesn’t get any information about the caller (e.g. “What browser or app invoked this?“, “What origin invoked this?“, etc) and thus it must make any decisions solely on the basis of the received URL..”</em></p>
+<h3 id="Default-schemes-x2F-protocol"><a href="#Default-schemes-x2F-protocol" class="headerlink" title="Default schemes&#x2F;protocol"></a>Default schemes&#x2F;protocol</h3><p>Chromium based browser have a set of defined protocols in the code. It could be that this set of ‘default’ protocols may vary depending on the browser or the OS. In the case of Brave Browser, they have a small wiki on their github <a target="_blank" rel="noopener" href="https://github.com/brave/brave-browser/wiki/Adding-a-protocol-scheme-to-Brave">Wiki: Adding a protocol scheme to Brave</a>. The <strong>standard schemes</strong> defined in <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/system-state.html#normalize-protocol-handler-parameters"><code>HTML spec</code></a> are:</p>
+<ul>
+<li><em>http&#x2F;https:</em> Normal scheme used for HTTP&#x2F;s protocol navigation.</li>
+<li><em>file:</em> Allows to retrieve&#x2F;view local files (e.g., file:&#x2F;&#x2F;&#x2F;home&#x2F;websec&#x2F;Downloads&#x2F;Syllabus.pdf).</li>
+<li><em>chromium or browser family (e.g., microsoft-edge, brave):</em> Used for internal browser pages (e.g., chromium:&#x2F;&#x2F;settings).</li>
+<li><em>mailto:</em> It opens your default mail application to send an email to the person that follows the scheme (e.g., mailto:<a href="mailto:&#119;&#101;&#98;&#x73;&#101;&#99;&#x40;&#x61;&#98;&#99;&#46;&#x63;&#x6f;&#x6d;">&#119;&#101;&#98;&#x73;&#101;&#99;&#x40;&#x61;&#98;&#99;&#46;&#x63;&#x6f;&#x6d;</a>).</li>
+<li><em>tel:</em> If you have your phone connected to your computer, it allows to make calls.</li>
+<li>All: bitcoin ftp ftps geo im irc ircs magnet mailto matrix mms news nntp openpgp4fpr sftp sip sms smsto ssh tel urn webcal wtai xmpp</li>
+</ul>
+<div class="column" title="Disclaimer">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+        As <a src="https://blogs.igalia.com/jfernandez/author/jfernandez/">Javier Fernandez</a>  describes in <a src="https://blogs.igalia.com/jfernandez/2022/08/10/new-custom-handlers-component-for-chrome/">some entries</a> in Igalia's blog, they changed the logic from `/chrome` to `/components`. Following this logic, the classes or code could change in the following years.
+    </div>
+  </div>
+</div>
+
+<p>The following class diagram by <a target="_blank" rel="noopener" href="https://blogs.igalia.com/jfernandez/author/jfernandez/">jfernandez</a> <a target="_blank" rel="noopener" href="https://blogs.igalia.com/jfernandez/2022/08/10/new-custom-handlers-component-for-chrome/">post</a> at Igalia’s blog illustrates the multi-process architecture of the Custom Handler logic.</p>
+<p><img src="/browser/web.to.app/class_protocol.png" alt="allowed"><br><img src="/browser/web.to.app/url_security.png" alt="allowed"></p>
+<p>In order to have deeper look into how schemes are added, <a target="_blank" rel="noopener" href="https://blogs.igalia.com/jfernandez/author/jfernandez/">jfernandez</a> provides us with another class diagram.</p>
+<p><img src="/browser/web.to.app/url_schemes.svg" alt="allowed"><br><img src="/browser/web.to.app/url_util.png" alt="allowed"></p>
+<p>Despite <a target="_blank" rel="noopener" href="https://blogs.igalia.com/jfernandez/author/jfernandez/">jfernandez</a> provides us with a class diagram, it is really hard to take a look the real code running inside the browser. However, I encourage you to go and see it for yourself <a target="_blank" rel="noopener" href="https://source.chromium.org/">(Chromium code)</a>.</p>
+<h3 id="Custom-protocol-handlers"><a href="#Custom-protocol-handlers" class="headerlink" title="Custom protocol handlers"></a>Custom protocol handlers</h3><p>Chromium based browsers when a custom, not blocked, protocol is used prompt a popup asking if the link should be open or not.</p>
+<p><img src="/browser/web.to.app/prompt.png" alt="prompt"></p>
+<p>If you want to <strong>disable</strong> this behavior in chromium-based browsers, you need to go to <em>Settings</em> &gt; <em>Site settings</em> &gt; <em>Additional permissions</em> &gt; <em>Protocol handlers</em>. In the case you want to check the behavior of your browser, I found this <a target="_blank" rel="noopener" href="https://webdbg.com/test/protocol/">website</a>. In chromium-based browser you can check the allowed&#x2F;ignored custom protocol in the <em>Preferences</em> file inside the configuration of your browsers. In GNU&#x2F;Linux, this file is located at <em><code>~/.config/BROWSER/Default/Preferences</code></em>.</p>
+<p><img src="/browser/web.to.app/preferences.png" alt="pref"></p>
+<h4 id="How-to-create-a-custom-protocol-x2F-scheme-handler"><a href="#How-to-create-a-custom-protocol-x2F-scheme-handler" class="headerlink" title="How to create a custom protocol&#x2F;scheme handler"></a>How to create a custom protocol&#x2F;scheme handler</h4><p>As I explained before, if the chromium-based browser doesn’t know how to handle a custom protocol, it will use the OS preferences of the user. In my case, this default application is <em>xdg-open</em>. In the following lines, I will create a new custom protocol “note:&#x2F;&#x2F;“. For Safari check the <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app">link</a>. First, I created a simple script that will print the arguments received from the browser.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -ne <span class="string">&quot;\nArguments: <span class="variable">$@</span> \n&quot;</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">sleep</span> 5;</span><br><span class="line">    <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>After creating the script, we need to configure <em>‘xdg-open’</em> to use this script when a specific MimeType is matched. For this task, we need to create a <em>‘.desktop’</em> file like the following one:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Name=test</span><br><span class="line">Exec=/path/test.sh %u</span><br><span class="line">GenericName=asdasd</span><br><span class="line">Type=Application</span><br><span class="line">Terminal=true</span><br><span class="line">MimeType=x-scheme-handler/note</span><br></pre></td></tr></table></figure>
+
+<p>Finally, we need to install this entry using the command <em>‘xdg-desktop-menu install path&#x2F;to&#x2F;file.desktop’</em>. I used the <a target="_blank" rel="noopener" href="https://webdbg.com/test/protocol/">previous named website</a> to test the protocol and after accepting the prompt, our scripts receives the input:</p>
+<p><img src="/browser/web.to.app/custom_protocol.png" alt="custom"></p>
+<h1 id="Local-Web-Server"><a href="#Local-Web-Server" class="headerlink" title="Local Web Server"></a>Local Web Server</h1><p>Another mechanisms is to define a local web server. When the Desktop application is running, a local socket is opened waiting for a connection. Websites only have to create a WebSocket to the used port and the communication will take place. This mechanisms is used by Discord, explained more in depth in the following section. In order to find any of this local web server, you may run <code>netstat -tlpn</code> in Linux and <code>netstat -ab</code> in Windows. This command will print opened ports and the application that is listening. One of the <strong>key protection</strong> used by this method is <strong><em>‘origin’</em></strong>. <strong>Origin Header</strong> indicates the scheme, hostname and port of the website creating the websocket. <em>Origin</em> is a <em>restricted header</em> that could not be change it.</p>
+<h3 id="Case-Study-Discord"><a href="#Case-Study-Discord" class="headerlink" title="Case Study: Discord"></a>Case Study: Discord</h3><p>In this section I will use Discord to take a look how this <em>‘Local Web Server’</em> mechanisms is implemented. As I mentioned before, we can see in the following screenshot that Discord Desktop App is listening in a specific port for the connection.</p>
+<p><img src="/browser/web.to.app/discord_ws3.png" alt="netstat"></p>
+<p>If we visit an invitation link on Discord website we would see how a WebSocket is created to “ws:&#x2F;&#x2F;127.0.0.1:6463” in which Discord Desktop App is listening.</p>
+<p><img src="/browser/web.to.app/discord_ws2.png" alt="devtools"></p>
+<p>In the following screenshot you could see all the messages exchanged between the Discord Website and Discord Desktop App.</p>
+<p><img src="/browser/web.to.app/discord_wireshark.png" alt="devtools"></p>
+<p>In order to interact with the websocket created by the Discord Desktop App, I created the following snippet written in python. Notice <em>origin header</em> declaration on the script.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> websocket <span class="keyword">import</span> create_connection</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create connection</span></span><br><span class="line">ws = create_connection(<span class="string">&quot;ws://127.0.0.1:6463/?v=1&quot;</span>, origin=<span class="string">&#x27;https://discord.com/&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># cmd = &#x27;DISPATCH&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(ws.recv())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Opens the discord app with the a invitation channel</span></span><br><span class="line">ws.send(<span class="string">&#x27;&#123;&quot;cmd&quot;:&quot;INVITE_BROWSER&quot;,&quot;args&quot;:&#123;&quot;code&quot;:&quot;68x4ADt&quot;&#125;,&quot;nonce&quot;:&quot;d973cf70-374a-4438-ba02-8929fbb069cf&quot;&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Return channel info</span></span><br><span class="line"><span class="built_in">print</span>(ws.recv())</span><br><span class="line"></span><br><span class="line">ws.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Local-Web-Server-Discovery"><a href="#Local-Web-Server-Discovery" class="headerlink" title="Local Web Server Discovery"></a>Local Web Server Discovery</h3><p>As the reader may be wondering, a website could create scanner of localhost to check for Local Web Servers. One example of this behavior was found in a <a target="_blank" rel="noopener" href="https://www.theregister.com/2018/08/07/halifax_bank_ports_scans/">bank</a>, where the bank scanned computers to try to find any general Remote Access Trojans (RATs). Another example was found in <a target="_blank" rel="noopener" href="https://nullsweep.com/why-is-this-website-port-scanning-me/">Ebay</a>, where the same behavior was observed.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
+<li><em>Recommended:</em> <a target="_blank" rel="noopener" href="https://textslashplain.com/2019/08/29/web-to-app-communication-app-protocols/">Article: Web-to-App Communication: App Protocols.</a></li>
+<li><em>Recommended:</em> <a target="_blank" rel="noopener" href="https://textslashplain.com/2019/08/28/browser-architecture-web-to-app-communication-overview/">Article: Browser Architecture: Web-to-App Communication Overview.</a></li>
+<li><em>Recommended:</em> <a target="_blank" rel="noopener" href="https://textslashplain.com/2020/02/20/bypassing-appprotocol-prompts/">Article: Bypassing App Protocol Prompts.</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.igalia.com/jfernandez/2022/08/10/new-custom-handlers-component-for-chrome/">Article: New Custom Handlers component for Chrome</a>. <strong>TL;DR: Chromium src</strong>.</li>
+<li><a target="_blank" rel="noopener" href="https://blogs.igalia.com/jfernandez/2022/11/14/discovering-chromes-pre-defined-custom-handlers/">Article: Discovering Chrome’s pre-defined Custom Handlers.</a> <strong>TL;DR: Chromium src</strong>.</li>
+<li><a target="_blank" rel="noopener" href="https://parsiya.net/blog/2020-08-13-localghost-escaping-the-browser-sandbox-without-0-days/">Exploiting: localghost: Escaping the Browser Sandbox Without 0-Days.</a></li>
+</ul>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+                © 2022 bubu
+                <br>
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>
