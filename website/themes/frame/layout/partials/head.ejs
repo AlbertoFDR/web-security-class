@@ -60,6 +60,14 @@ if (is_archive()){
     <script src="<%- url_for(url) %>"></script>
     <% }); %>
 <% } %>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HWYY8DJW4W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HWYY8DJW4W');
+</script>
 
 <%# mathjax support %>
 <% if(theme.mathjax_enable){ %>

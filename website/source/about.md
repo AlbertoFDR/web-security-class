@@ -12,6 +12,12 @@ The first option is to contribute to the [Syllabus](https://docs.google.com/docu
 
 Another option is directly contributing in the [github repository](https://github.com/AlbertoFDR/web-security-class) creating an issue.
 
-## Limitation 🚨
+## Limitations 🚨
 
 I want to let you know in advance that there may be some incorrect information in any of the entries. I apologize for any mistakes, as I am not perfect. If you happen to notice any errors, typos or have any suggestions, please do not hesitate to let me know. Additionally, please note that the information provided in the entries may become outdated over time.
+
+## Behind the Scenes 🧩
+
+The [hexo framework](https://hexo.io/) was utilized to construct this blog, utilizing the ['frame' theme](https://github.com/zoeingwingkei/frame). I utilize the [Excalidraw webpage](https://excalidraw.com/) for my drawings, which is user-friendly. By substituting `.svg` with `.excalidraw`, you can access the excalidraw drawing. 
+
+
