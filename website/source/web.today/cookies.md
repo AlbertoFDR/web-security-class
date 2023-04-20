@@ -50,6 +50,18 @@ What happens if the webpage that you visit imports a third-party resource? The b
 
 As depicted in the preceding images, two keys have been incorporated into the HTTP protocol for cookies: `set-cookie` and `cookie`. If you prefer, you can read the RFC for the specification ([link](https://www.rfc-editor.org/rfc/rfc6265.html)). 
 
+<div class="column" title="Cookie Key">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+      <i>
+         "Similarly, cookies for a given host are shared across all the ports on that host, even though the usual 'same-origin-policy' used by web browsers isolates content retrieved via different ports."
+        </i>
+        <a href='https://www.rfc-editor.org/rfc/rfc6265.html'>RFC 6265.</a>.
+    </div>
+  </div>
+</div>
+
+
 #### Set-Cookie
 
 As demonstrated in the picture, the `Set-Cookie` header is a mechanism used by the server to inform the user's browser of a specific cookie that should be stored and sent in subsequent requests to the server. This header is included in the server's response to the user's initial request, and contains information about the cookie's name, value, expiration time, path, and other optional attributes. Once the browser receives this header, it stores the cookie locally and sends it back to the server in all subsequent requests to the same domain. For further read of this header or any existing header I recommend ([Mozilla Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)). The syntax of this header is the following one: 

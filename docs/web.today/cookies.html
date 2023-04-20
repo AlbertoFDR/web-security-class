@@ -156,6 +156,18 @@
 <h2 id="Third-party-resources"><a href="#Third-party-resources" class="headerlink" title="Third-party resources"></a>Third-party resources</h2><p>What happens if the webpage that you visit imports a third-party resource? The browser would request these resources from the third-party. If it is the first time you are requesting that endpoint, it could happen that the endpoint returns a Set-Cookie header. If it is not the first time, the browser will request the resource using the cookie for that third-party domain, if any. Let’s take the previous example, but this time imagine that it imports an image from a third-party:</p>
 <p><img src="/web-security-class/advanced/web.tracking/third-party-resource.svg" alt="cookie"></p>
 <h1 id="Baking-a-Cookie"><a href="#Baking-a-Cookie" class="headerlink" title="Baking a Cookie"></a>Baking a Cookie</h1><p>As depicted in the preceding images, two keys have been incorporated into the HTTP protocol for cookies: <code>set-cookie</code> and <code>cookie</code>. If you prefer, you can read the RFC for the specification (<a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc6265.html">link</a>). </p>
+<div class="column" title="Cookie Key">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+      <i>
+         "Similarly, cookies for a given host are shared across all the ports on that host, even though the usual 'same-origin-policy' used by web browsers isolates content retrieved via different ports."
+        </i>
+        <a target="_blank" rel="noopener" href='https://www.rfc-editor.org/rfc/rfc6265.html'>RFC 6265.</a>.
+    </div>
+  </div>
+</div>
+
+
 <h4 id="Set-Cookie"><a href="#Set-Cookie" class="headerlink" title="Set-Cookie"></a>Set-Cookie</h4><p>As demonstrated in the picture, the <code>Set-Cookie</code> header is a mechanism used by the server to inform the user’s browser of a specific cookie that should be stored and sent in subsequent requests to the server. This header is included in the server’s response to the user’s initial request, and contains information about the cookie’s name, value, expiration time, path, and other optional attributes. Once the browser receives this header, it stores the cookie locally and sends it back to the server in all subsequent requests to the same domain. For further read of this header or any existing header I recommend (<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie">Mozilla Web Docs</a>). The syntax of this header is the following one: </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; &lt;option&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Domain=&lt;domain-value&gt;; Secure; HttpOnly</span><br></pre></td></tr></table></figure>
 
