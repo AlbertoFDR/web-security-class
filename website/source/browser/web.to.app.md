@@ -17,6 +17,7 @@ Actual browsers have different type of methods to handle the communication betwe
 | ------------------------------------ | --------------------------------------------------------------------------------------- | ---------------------------- |
 | App protocol (websec://)             | Yes                                                                                     | Fire-and-forget              |
 | File downloads                       | Yes                                                                                     | Fire-and-forget              |
+| File System Access API               | Yes                                                                                     | Read-and-write               |
 | Extension (Native Message API)       | Yes (¿Safari?)                                                                          | Bi-directional communication |
 | Drag&Drop                            | Yes                                                                                     | Fire-and-forget              |
 | System clipboard                     | Yes                                                                                     | Fire-and-forget              |
@@ -175,6 +176,12 @@ ws.close()
 ### Local Web Server Discovery
 
 As the reader may be wondering, a website could create scanner of localhost to check for Local Web Servers. One example of this behavior was found in a [bank](https://www.theregister.com/2018/08/07/halifax_bank_ports_scans/), where the bank scanned computers to try to find any general Remote Access Trojans (RATs). Another example was found in [Ebay](https://nullsweep.com/why-is-this-website-port-scanning-me/), where the same behavior was observed.
+
+
+# File System Access API (a.k.a. Native File System API)
+
+I recently discovered the [FSA API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API) ([article](https://developer.chrome.com/articles/file-system-access/)), a powerful Web API that enables websites to interact with the file system and edit files. One notable example of this API in action is in Visual Studio, where users can read and modify files seamlessly. With FSA API, it's possible to edit your project folder directly from the browser, making it easy to update your local code from the website. By using this API, users can grant access (accepting the popup) to specific files or folders, giving websites the ability to make local modifications to them. Take a look at this [demo webpage](https://googlechromelabs.github.io/text-editor/). Although it's not a standard API, it has been implemented in browsers like Chromium, Microsoft Edge and Chrome. Partially supported by Opera and Safari.
+
 
 ## References:
 
