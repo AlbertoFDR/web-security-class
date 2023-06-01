@@ -56,7 +56,7 @@ As depicted in the preceding images, two keys have been incorporated into the HT
       <i>
          "Similarly, cookies for a given host are shared across all the ports on that host, even though the usual 'same-origin-policy' used by web browsers isolates content retrieved via different ports."
         </i>
-        <a href='https://www.rfc-editor.org/rfc/rfc6265.html'>RFC 6265.</a>.
+        <a href='https://www.rfc-editor.org/rfc/rfc6265.html'>RFC 6265</a>.
     </div>
   </div>
 </div>
