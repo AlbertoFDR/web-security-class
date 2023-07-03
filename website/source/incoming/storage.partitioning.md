@@ -41,8 +41,7 @@ As mentioned previously, Chrome has proposed 'Cookies Having Independent Partiti
 ![client-side-storage-partitioning](/incoming/storage.partitioning/chips.svg)
 
 
-Similar to the CHIPS proposal, other browser vendors such as Brave have implemented ephemeral partitioned cookies as a means to prevent website disruptions. In essence, this approach allows the use of partitioned third-party cookies for a limited duration, typically ranging from 30 seconds to 1 minute.
-
+Similar to the CHIPS proposal, other browser vendors such as Brave have implemented ephemeral partitioned cookies as a means to prevent website disruptions. In essence, this approach allows the use of partitioned third-party cookies for a limited duration, typically ranging from 30 seconds to 1 minute ([Brave's article](https://brave.com/privacy-updates/8-grab-bag-2/#ephemeral-storage-keep-alive)).
 
 
 # Iframes 
