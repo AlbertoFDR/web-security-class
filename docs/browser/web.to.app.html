@@ -237,7 +237,7 @@
 <li><em>http&#x2F;https:</em> Normal scheme used for HTTP&#x2F;s protocol navigation.</li>
 <li><em>file:</em> Allows to retrieve&#x2F;view local files (e.g., file:&#x2F;&#x2F;&#x2F;home&#x2F;websec&#x2F;Downloads&#x2F;Syllabus.pdf).</li>
 <li><em>chromium or browser family (e.g., microsoft-edge, brave):</em> Used for internal browser pages (e.g., chromium:&#x2F;&#x2F;settings).</li>
-<li><em>mailto:</em> It opens your default mail application to send an email to the person that follows the scheme (e.g., mailto:<a href="mailto:&#119;&#x65;&#x62;&#x73;&#x65;&#x63;&#x40;&#97;&#x62;&#99;&#x2e;&#99;&#x6f;&#109;">&#119;&#x65;&#x62;&#x73;&#x65;&#x63;&#x40;&#97;&#x62;&#99;&#x2e;&#99;&#x6f;&#109;</a>).</li>
+<li><em>mailto:</em> It opens your default mail application to send an email to the person that follows the scheme (e.g., mailto:<a href="mailto:&#x77;&#101;&#98;&#115;&#x65;&#x63;&#64;&#x61;&#x62;&#x63;&#x2e;&#x63;&#111;&#109;">&#x77;&#101;&#98;&#115;&#x65;&#x63;&#64;&#x61;&#x62;&#x63;&#x2e;&#x63;&#111;&#109;</a>).</li>
 <li><em>tel:</em> If you have your phone connected to your computer, it allows to make calls.</li>
 <li>All: bitcoin ftp ftps geo im irc ircs magnet mailto matrix mms news nntp openpgp4fpr sftp sip sms smsto ssh tel urn webcal wtai xmpp</li>
 </ul>
@@ -266,6 +266,14 @@
 
 <p>Finally, we need to install this entry using the command <em>‘xdg-desktop-menu install path&#x2F;to&#x2F;file.desktop’</em>. I used the <a target="_blank" rel="noopener" href="https://webdbg.com/test/protocol/">previous named website</a> to test the protocol and after accepting the prompt, our scripts receives the input:</p>
 <p><img src="/web-security-class/browser/web.to.app/custom_protocol.png" alt="custom"></p>
+<div class="column" title="Scheme Flooding">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+        There is a project called <a src="https://schemeflood.com/">Scheme Flooding project</a> which abuses this behavior in order to fingerprint the user depending on the applications installed on the device (e.g., skype://, spotify://...). 
+    </div>
+  </div>
+</div>
+
 <h1 id="Local-Web-Server"><a href="#Local-Web-Server" class="headerlink" title="Local Web Server"></a>Local Web Server</h1><p>Another mechanisms is to define a local web server. When the Desktop application is running, a local socket is opened waiting for a connection. Websites only have to create a WebSocket to the used port and the communication will take place. This mechanisms is used by Discord, explained more in depth in the following section. In order to find any of this local web server, you may run <code>netstat -tlpn</code> in Linux and <code>netstat -ab</code> in Windows. This command will print opened ports and the application that is listening. One of the <strong>key protection</strong> used by this method is <strong><em>‘origin’</em></strong>. <strong>Origin Header</strong> indicates the scheme, hostname and port of the website creating the websocket. <em>Origin</em> is a <em>restricted header</em> that could not be change it.</p>
 <h3 id="Case-Study-Discord"><a href="#Case-Study-Discord" class="headerlink" title="Case Study: Discord"></a>Case Study: Discord</h3><p>In this section I will use Discord to take a look how this <em>‘Local Web Server’</em> mechanisms is implemented. As I mentioned before, we can see in the following screenshot that Discord Desktop App is listening in a specific port for the connection.</p>
 <p><img src="/web-security-class/browser/web.to.app/discord_ws3.png" alt="netstat"></p>

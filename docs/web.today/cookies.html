@@ -147,7 +147,7 @@
       <i>
          "...It remembers <b>stateful</b> information for the <b>stateless HTTP protocol</b>."
         </i>
-        <a target="_blank" rel="noopener" href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies'>Mozilla Web Docs.</a>.
+        <a target="_blank" rel="noopener" href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies'>Mozilla Web Docs</a>.
     </div>
   </div>
 </div>
@@ -172,6 +172,17 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; &lt;option&gt;</span><br><span class="line">Set-Cookie: &lt;cookie-name&gt;=&lt;cookie-value&gt;; Domain=&lt;domain-value&gt;; Secure; HttpOnly</span><br></pre></td></tr></table></figure>
 
 <p>All of the <code>set-cookie</code> options are important but we are going to focus in some of them. If you want to check all the headers (<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie">Mozilla Docs</a>). One important option is <code>HttpOnly</code> which disables any interacion with cookies from the javascript. Suppose you discover a Cross-Site Scripting (XSS) vulnerability in a webpage. This vulnerability grants you the ability to execute your JavaScript code on the client-side. If the <code>HttpOnly</code> header has not been set, you can extract the admin’s cookie if they access the URL with the XSS using <code>document.cookie</code> in javascript. You can then use the cookie to login as the admin. <strong>Warning:</strong> Setting the HttpOnly header doesn’t mean that the cookie will not be included in the request made by JavaScript (e.g., fetch). For this issue (CSRF attacks), <code>SameSite</code> header exist. This header defines if the header could be send from other origins. For this header, I recommend another <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">post from Mozilla Web Docs</a>.</p>
+<div class="column" title="Reading Cookies from Different Paths (Huli)">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+      <i>
+        "For example, if I set the cookie’s path to /siteA, then when I’m on /siteB, I can’t read the cookie from /siteA because the paths are different, so I can’t get it. But actually, it’s not necessarily true. If your website doesn’t block iframe embedding and the cookie isn’t set to HttpOnly, you can use an iframe to read cookies from different paths. This is because https://example.com/siteA and https://example.com/siteB are the same origin even though their paths are different. Therefore, you can directly access the document of other same-origin web pages through an iframe and use this feature to get document.cookie".
+      </i>
+      <a target="_blank" rel="noopener" href='https://blog.huli.tw/2021/10/25/en/learn-frontend-from-security-pov/#reading-cookies-from-different-paths'>Huli's blog.</a>.
+    </div>
+  </div>
+</div>
+
 <h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p><code>Cookie</code> header is the header where the cookie is send in the user requests, after been created (<code>set-cookie</code> or javascript). The syntax for this header is:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie</span><br><span class="line">Cookie: &lt;cookie-list&gt;</span><br><span class="line">Cookie: name=value</span><br><span class="line">Cookie: name=value; name2=value2; name3=value3</span><br></pre></td></tr></table></figure>
 
@@ -216,6 +227,7 @@
 <li>HTTP State Management Mechanism: <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc2109">RFC 1997</a></li>
 <li>HTTP State Management Mechanism: <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc6265.html">RFC 2011</a></li>
 <li><em>Recommended:</em> Mozilla Developers Docs: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies">Using HTTP Cookies</a>.</li>
+<li><em>Recommended:</em> Huli Blog: <a target="_blank" rel="noopener" href="https://blog.huli.tw/2021/10/25/en/learn-frontend-from-security-pov/">link to the blog</a>.</li>
 </ul>
 <h3 id="Thanks-for-reading"><a href="#Thanks-for-reading" class="headerlink" title="Thanks for reading"></a>Thanks for reading</h3><p>If you have any recommendation&#x2F;mistake&#x2F;feedback, feel free to reach me <a target="_blank" rel="noopener" href="https://twitter.com/alberto_fdr">twitter</a> :)</p>
 

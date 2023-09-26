@@ -134,6 +134,14 @@ Finally, we need to install this entry using the command _'xdg-desktop-menu inst
 
 ![custom](/browser/web.to.app/custom_protocol.png)
 
+<div class="column" title="Scheme Flooding">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+        There is a project called <a src="https://schemeflood.com/">Scheme Flooding project</a> which abuses this behavior in order to fingerprint the user depending on the applications installed on the device (e.g., skype://, spotify://...). 
+    </div>
+  </div>
+</div>
+
 # Local Web Server
 
 Another mechanisms is to define a local web server. When the Desktop application is running, a local socket is opened waiting for a connection. Websites only have to create a WebSocket to the used port and the communication will take place. This mechanisms is used by Discord, explained more in depth in the following section. In order to find any of this local web server, you may run `netstat -tlpn` in Linux and `netstat -ab` in Windows. This command will print opened ports and the application that is listening. One of the **key protection** used by this method is **_'origin'_**. **Origin Header** indicates the scheme, hostname and port of the website creating the websocket. _Origin_ is a _restricted header_ that could not be change it.
