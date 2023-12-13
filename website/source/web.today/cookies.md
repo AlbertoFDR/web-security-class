@@ -168,6 +168,8 @@ In 1999, the specification was revised and published as RFC 2965, which added su
 - _Recommended:_ Mozilla Developers Docs: [Using HTTP Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies).
 - _Recommended:_ Huli Blog: [link to the blog](https://blog.huli.tw/2021/10/25/en/learn-frontend-from-security-pov/).
 - _Recommended:_ Cookie Bugs - by Ankur: [link to the blog](https://blog.ankursundara.com/cookie-bugs/).
+- _Recommended:_ The Cookie Monster in Your Browsers pptx - by @filedescriptor: [link](https://youtube.com/watch?v=njQcVWPB1is&list=PLQcbOyDFl_bfmSiby5wC0oRFSIK2c07SA&index=6).
+
 
 
 
