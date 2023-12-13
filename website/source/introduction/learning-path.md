@@ -16,6 +16,8 @@ In computer science, like many other fields, being self-taught is key. Essential
 - [Beginners Quest - Introduction](https://jhalon.github.io/2018-google-ctf-beginners-intro/)
 - [So You Want To Be a Pentester?](https://jhalon.github.io/becoming-a-pentester/)
 
+Furthermore, I highly recommend Stanford Web Security Class ([Syllabus](https://web.stanford.edu/class/cs253/))([youtube](https://www.youtube.com/watch?v=5JJrJGZ_LjM&list=PL1y1iaEtjSYiiSGVlL1cHsXN_kvJOOhu-)).
+
 ### Capture The Flag (CTF) competition
 
 An essential aspect of security is balancing theoretical knowledge acquisition with practical application. Capture The Flags (CTF) competitions ([What is a CTF?](https://www.youtube.com/watch?v=8ev9ZX9J45A)) stand out as one of the finest resources for simultaneous theoretical learning and practical application. I won't delve extensively into this, but I highly recommend readers explore this further online (check the references for some of them). What I aim to emphasize in this subsection are resources specifically tailored to Web Security that I love. All of them free ;-)
