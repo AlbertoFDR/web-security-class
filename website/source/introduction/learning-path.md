@@ -120,6 +120,8 @@ In this final section, I'd like to highlight some books related to this topic. W
 
 Last but certainly not least, I'd like to touch on the subject of mental health. Learning cybersecurity or web security content isn't a sprint; it's more like a marathon. At times, the abundance of concepts to learn can be overwhelming, leading to comparisons with experts in the field without knowing their background. I recommend to see the following video by LiveOverflow ([link](https://www.youtube.com/watch?v=AMMOErxtahk)) about enjoying the path and this another about starting in Hacking ([link](https://www.youtube.com/watch?v=2TofunAI6fU)). Moreover, there are instances where dedicating excessive time to learning in this field can lead to burnout. It's crucial to strike a balance between immersion in the subject and maintaining a healthy pace to avoid mental and physical exhaustion.
 
+![meme](/learning-path/meme.jpg)
+
 ### Conclusion
 
 In conclusion, my aspiration for this blog is to facilitate the entry of newcomers into the field without overwhelming them in the process of exploration and learning. Additionally, this blog serves as a means for me to solidify my understanding by articulating intriguing concepts within the field, attempting to encapsulate over 20 years of web research into accessible blog posts.
