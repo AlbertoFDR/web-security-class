@@ -166,7 +166,7 @@ In order to interact with the websocket created by the Discord Desktop App, I cr
 from websocket import create_connection
 
 # Create connection
-ws = create_connection("ws://127.0.0.1:6463/?v=1", origin='https://discord.com/'})
+ws = create_connection("ws://127.0.0.1:6463/?v=1", origin='https://discord.com/')
 
 # cmd = 'DISPATCH'
 print(ws.recv())
