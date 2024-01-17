@@ -137,7 +137,7 @@ Finally, we need to install this entry using the command _'xdg-desktop-menu inst
 <div class="column" title="Scheme Flooding">
   <div style="overflow: hidden">
     <div style="float: left;">
-        There is a project called <a src="https://schemeflood.com/">Scheme Flooding project</a> which abuses this behavior in order to fingerprint the user depending on the applications installed on the device (e.g., skype://, spotify://...). 
+        There is a project called <a href="https://schemeflood.com/">Scheme Flooding project</a> which abuses this behavior in order to fingerprint the user depending on the applications installed on the device (e.g., skype://, spotify://...). 
     </div>
   </div>
 </div>
