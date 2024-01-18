@@ -100,7 +100,7 @@ Chromium based browsers when a custom, not blocked, protocol is used prompt a po
 
 ![prompt](/browser/web.to.app/prompt.png)
 
-If you want to **disable** this behavior in chromium-based browsers, you need to go to _Settings_ > _Site settings_ > _Additional permissions_ > _Protocol handlers_. In the case you want to check the behavior of your browser, I found this [website](https://webdbg.com/test/protocol/). In chromium-based browser you can check the allowed/ignored custom protocol in the _Preferences_ file inside the configuration of your browsers. In GNU/Linux, this file is located at _`~/.config/BROWSER/Default/Preferences`_.
+If you want to **disable** this behavior in chromium-based browsers, you need to go to _Settings_ > _Site settings_ > _Additional permissions_ > _Protocol handlers_. In the case you want to check the behavior of your browser, I found this [website](https://webdbg.com/test/protocol/). In chromium-based browser you can check the allowed/ignored custom protocol in the _Preferences_ file inside the configuration of your browsers. In GNU/Linux, this file is located at _`~/.config/BROWSER/Default/Preferences`_. In Firefox the file we need to found is `handlers.json` or opening the browser `Settings > General > Applications`. If you are using `snap` store, the browser config is inside this folder.
 
 ![pref](/browser/web.to.app/preferences.png)
 
@@ -148,7 +148,7 @@ Another mechanisms is to define a local web server. When the Desktop application
 
 ### Case Study: Discord
 
-In this section I will use Discord to take a look how this _'Local Web Server'_ mechanisms is implemented. As I mentioned before, we can see in the following screenshot that Discord Desktop App is listening in a specific port for the connection.
+In this section I will use Discord ([discord documentation](https://discord.com/developers/docs/topics/rpc)) to take a look how this _'Local Web Server'_ mechanisms is implemented. As I mentioned before, we can see in the following screenshot that Discord Desktop App is listening in a specific port for the connection.
 
 ![netstat](/browser/web.to.app/discord_ws3.png)
 
