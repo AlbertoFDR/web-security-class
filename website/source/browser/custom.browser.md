@@ -45,11 +45,11 @@ Some years ago they separated _chrome_ and _content_ folder in order to have a m
 
 ## How to search on the code
 
-Before we download the code, let me explain how to navigate this large codebase. Chromium provides a [website](https://www.chromium.org/chromium-projects/) where we can search for specific parts of the code. Depending on your goal, this task of finding and understanding the code could be really complex. Chromium website provides code paths for common operations ([link](https://www.chromium.org/developers/how-tos/getting-around-the-chrome-source-code/#code-paths-for-common-operations)). Let's try a dumb example in which we want to change the menu that appears when we do right click in the webpage.
+Before we download the code, let me explain how to navigate this large codebase. Chromium provides a [website](https://source.chromium.org/chromium) where we can search for specific parts of the code. Depending on your goal, this task of finding and understanding the code could be really complex. Chromium website provides code paths for common operations ([link](https://www.chromium.org/developers/how-tos/getting-around-the-chrome-source-code/#code-paths-for-common-operations)). Let's try a dumb example in which we want to change the menu that appears when we do right click in the webpage.
 
 ![right-click-menu](/browser/custom.browser/right_click_menu.png)
 
-For this task, I will use the [search website](https://chromium.googlesource.com/) I mentioned earlier. In this case, I will search for the text _"Send to your devices"_ because it will be easier.
+For this task, I will use the [search website](https://source.chromium.org/chromium) I mentioned earlier. In this case, I will search for the text _"Send to your devices"_ because it will be easier.
 
 ![search](/browser/custom.browser/search_text.png)
 
