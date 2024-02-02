@@ -132,3 +132,4 @@ In conclusion, my aspiration for this blog is to facilitate the entry of newcome
 -   _Recommended [VIDEO]:_ [Real World CTF Finals 2018 by LiveOverflow](https://www.youtube.com/watch?v=2S_TXaGYD8E)
 -   _Recommended [VIDEO]:_ [What is a CTF by CTFRadiooo](https://www.youtube.com/watch?v=aBKhuWTc1Eg)
 -   _Recommended [VIDEO]:_ [How to get into it, by CTFRadiooo](https://www.youtube.com/watch?v=UuKX5pbsA0o)
+-   _Recommended [Blog]:_ [Demystifying Browsers by Ericlaw](https://textslashplain.com/2020/02/09/demystifying-browsers/)
