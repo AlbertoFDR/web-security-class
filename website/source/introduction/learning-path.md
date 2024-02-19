@@ -118,7 +118,7 @@ In this final section, I'd like to highlight some books related to this topic. W
 
 ### Mental Health
 
-Last but certainly not least, I'd like to touch on the subject of mental health. Learning cybersecurity or web security content isn't a sprint; it's more like a marathon. At times, the abundance of concepts to learn can be overwhelming, leading to comparisons with experts in the field without knowing their background. I recommend to see the following video by LiveOverflow ([link](https://www.youtube.com/watch?v=AMMOErxtahk)) about enjoying the path and this another about starting in Hacking ([link](https://www.youtube.com/watch?v=2TofunAI6fU)). Moreover, there are instances where dedicating excessive time to learning in this field can lead to burnout. It's crucial to strike a balance between immersion in the subject and maintaining a healthy pace to avoid mental and physical exhaustion.
+Last but certainly not least, I'd like to touch on the subject of mental health. Learning cybersecurity or web security content isn't a sprint; it's more like a marathon. At times, the abundance of concepts to learn can be overwhelming, leading to comparisons with experts in the field without knowing their background. I recommend to see the following video by LiveOverflow ([link](https://www.youtube.com/watch?v=AMMOErxtahk)) about enjoying the path and this another about starting in Hacking ([link](https://www.youtube.com/watch?v=2TofunAI6fU)). Moreover, there are instances where dedicating excessive time to learning in this field can lead to burnout. It's crucial to strike a balance between immersion in the subject and maintaining a healthy pace to avoid mental and physical exhaustion. Also, I recommend reading this [blog post from Azeria](https://azeria-labs.com/the-importance-of-deep-work-the-30-hour-method-for-learning-a-new-skill/).
 
 ![meme](/introduction/learning-path/meme.jpg)
 
@@ -128,6 +128,7 @@ In conclusion, my aspiration for this blog is to facilitate the entry of newcome
 
 ## References:
 
+-   _Recommended [Github Repo]:_ [A collection of awesome lists for hackers, pentesters & security researchers.](https://github.com/Hack-with-Github/Awesome-Hacking)
 -   _Recommended [VIDEO]:_ [Building a Competitive Hacking Team (USENIX Enigma 2016) by Tyler Nighswander](https://www.youtube.com/watch?v=-r-B1uOj0W4)
 -   _Recommended [VIDEO]:_ [Real World CTF Finals 2018 by LiveOverflow](https://www.youtube.com/watch?v=2S_TXaGYD8E)
 -   _Recommended [VIDEO]:_ [What is a CTF by CTFRadiooo](https://www.youtube.com/watch?v=aBKhuWTc1Eg)
