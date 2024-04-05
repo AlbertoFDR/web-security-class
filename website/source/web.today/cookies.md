@@ -119,7 +119,9 @@ document.cookie = "user=babyyoda; path=/";"
 
 # Security 
 
-One fundamental keyword for restricting cookie usage exclusively to HTTPS environments (employing SSL) is `Secure`. Another frequently used keyword is `HttpOnly`, indicating that the cookie is inaccessible to JavaScript and exclusively utilized in HTTP connections. In addition to conventional safeguards against common threats such as XSS attacks, there is another recently added mitigation measure known as `Same-site`. For further information, I refer to [Mozilla's blog](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#samesite_attribute) or [Soheil's](https://scnps.co/) Research Paper [Wiki](https://scnps.co/same-site-wiki/docs/main).
+One fundamental keyword for restricting cookie usage exclusively to HTTPS environments (employing SSL) is `Secure`. Another frequently used keyword is `HttpOnly`, indicating that the cookie is inaccessible to JavaScript and exclusively utilized in HTTP connections. In addition to conventional safeguards against common threats such as XSS attacks, there is another recently added mitigation measure known as `Same-site`. For further information, I refer to [Mozilla's blog](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#samesite_attribute) or [Soheil's](https://scnps.co/) Research Paper [Wiki](https://scnps.co/same-site-wiki/docs/main). 
+
+For this subsection, I also recommend this [blog entry](https://blog.ankursundara.com/cookie-bugs/) by [Ankur](https://blog.ankursundara.com/) or this research called "Cookie Crumbles: Unveiling Web Session Integrity Vulnerabilities" ([BlackHat video](https://www.youtube.com/watch?v=F_wAzF4a7Xg)) by [Pedro Adão](https://twitter.com/pedromigueladao) and [Marco Squarcina](https://minimalblue.com/).
 
 # Privacy issues
 
