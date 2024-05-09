@@ -163,7 +163,7 @@ HTTP Cookies were first proposed in 1994 by Netscape Communications Corporation 
 
 The first version of the HTTP Cookies specification was published in 1997 as RFC 2109, which defined the format of the cookie header that is used to set and send cookies between clients and servers. The original specification included several attributes that can be used to control the behavior of cookies, such as the cookie's name, value, expiration time, and path.
 
-In 1999, the specification was revised and published as RFC 2965, which added support for more advanced features such as `secure` cookies, which can only be sent over a secure HTTPS connection, and `HttpOnly` cookies, which cannot be accessed by client-side scripts.
+In 1999, the specification was revised and published as [RFC 2965](https://www.rfc-editor.org/rfc/rfc2965), which added support for more advanced features such as `secure` cookies, which can only be sent over a secure HTTPS connection. In the case of `HttpOnly` flag, was added in 2011, by the [RFC 6265](https://www.rfc-editor.org/rfc/rfc6265#page-21)
 
 
 ## References:
