@@ -10,7 +10,7 @@ logo_image:
 
 menu:
   Home: /
-  About: /about/
+  About: /about
 
 # stylesheets loaded in the <head>
 stylesheets:
