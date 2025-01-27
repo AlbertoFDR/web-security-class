@@ -190,6 +190,9 @@ As the reader may be wondering, a website could create scanner of localhost to c
 
 I recently discovered the [FSA API](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API) ([article](https://developer.chrome.com/articles/file-system-access/)), a powerful Web API that enables websites to interact with the file system and edit files. One notable example of this API in action is in Visual Studio, where users can read and modify files seamlessly. With FSA API, it's possible to edit your project folder directly from the browser, making it easy to update your local code from the website. By using this API, users can grant access (accepting the popup) to specific files or folders, giving websites the ability to make local modifications to them. Take a look at this [demo webpage](https://googlechromelabs.github.io/text-editor/). Although it's not a standard API, it has been implemented in browsers like Chromium, Microsoft Edge and Chrome. Partially supported by Opera and Safari.
 
+### Thanks for reading
+If you have any recommendation/mistake/feedback, feel free to reach me [twitter](https://twitter.com/alberto_fdr) :)
+
 
 ## References:
 
@@ -199,3 +202,9 @@ I recently discovered the [FSA API](https://developer.mozilla.org/en-US/docs/Web
 -   [Article: New Custom Handlers component for Chrome](https://blogs.igalia.com/jfernandez/2022/08/10/new-custom-handlers-component-for-chrome/). **TL;DR: Chromium src**.
 -   [Article: Discovering Chrome’s pre-defined Custom Handlers.](https://blogs.igalia.com/jfernandez/2022/11/14/discovering-chromes-pre-defined-custom-handlers/) **TL;DR: Chromium src**.
 -   [Exploiting: localghost: Escaping the Browser Sandbox Without 0-Days.](https://parsiya.net/blog/2020-08-13-localghost-escaping-the-browser-sandbox-without-0-days/)
+
+## Other articles of the blog:
+
+-   [Web Security Class: How to build your custom browser on top of chromium.](https://albertofdr.github.io/web-security-class/browser/custom.browser)
+-   [Web Security Class: Everything you ever wanted to know about Web Tracking (but were afraid to ask).](https://albertofdr.github.io/web-security-class/advanced/web.tracking)
+-   [Web Security Class: Storage Partitioning 📂: From each according to his ability, to each according to his needs.](https://albertofdr.github.io/web-security-class/incoming/storage.partitioning)

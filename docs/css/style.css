@@ -1101,6 +1101,7 @@ hr {
   border: 10px solid transparent;
 }
 .balloon_l .says:after {
+  top: 30px;
   left: -26px;
   border-right: 22px solid #f0f0f0;
 }
@@ -1146,4 +1147,48 @@ hr {
   float: left;
   width: 33.33333%;
   text-align: right;
+}
+table {
+  width: 100%;
+  border-collapse: collapse; /* Collapse borders to remove spacing between them */
+  margin: 20px 0; /* Space around the table */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Add a subtle shadow for a floating effect */
+}
+th {
+  background-color: #f44336; /* Red background for the header */
+  color: #fff; /* White text */
+  padding: 12px 15px; /* Add padding for the header */
+  text-align: center; /* Align text to the left */
+  font-weight: bold; /* Make header text bold */
+}
+td:not(.code) {
+  padding: 12px 15px; /* Add padding for the table cells */
+  text-align: center;
+  border-bottom: 1px solid #ddd; /* Add a light border at the bottom of each row */
+}
+td:first-child {
+  text-align: left; /* Align the first column to the left */
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light grey background for even rows */
+}
+tr:hover {
+  background-color: #f1f1f1; /* Slightly darker background on hover */
+}
+table,
+th,
+td {
+  border: 1px solid #ddd; /* Light grey border for table, headers, and data cells */
+}
+@media screen and (max-width: 768px) {
+  table {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+  th,
+  td {
+    padding: 8px; /* Reduce padding for smaller screens */
+  }
+  table {
+    width: 100%;
+  }
 }

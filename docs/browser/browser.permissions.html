@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="bubu">
+
+
+
+    <meta name="description" content="Web Security Educational Blog">
+
+
+
+
+
+<title>You Shall Not Get Access 🧙🏻‍♂️: Browser Permissions | WebSec!</title>
+
+
+
+    <link rel="icon" href="/web-security-class/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/web-security-class/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/web-security-class/js/menu.js"></script>
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-31N6Z0XH0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-31N6Z0XH0G');
+</script>
+
+
+
+
+
+
+
+
+
+  <meta name="generator" content="Hexo 6.3.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/web-security-class/">
+          
+            WebSecurityClass!
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/web-security-class/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/web-security-class/about">About</a>
+              </li> 
+                   
+          
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="post-title">
+            
+            
+                You Shall Not Get Access 🧙🏻‍♂️: Browser Permissions
+            
+            
+        </div>
+    </div>
+    <div class="h-line-primary"></div>
+</div>
+    <div class="post-content">
+    <div class="balloon_l">
+  <div class="faceicon"><img src="../icon/otter_says.png" alt="faceicon" ></div>
+  <p class="says">
+  Let's take Google Meet as an example. When you try to join a very (cough cough) important (cough cough) work meeting, and the browser pops up a prompt requesting access to your camera and microphone... How do these browser permissions work? How many other permissions are out there? 
+  </p>
+</div>
+
+
+<p><img src="/web-security-class/browser/browser.permissions/asking-micro.svg" alt="asking"></p>
+<h1 id="Browser-Permissions"><a href="#Browser-Permissions" class="headerlink" title="Browser Permissions"></a>Browser Permissions</h1><div class="column" title="Permission vs Feature">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+        Permission is the key or gateway to accessing and requesting certain features. For example, if a webpage has 'camera' permission, it means the page can either request access to the camera or use it directly if previously granted. This type of permission, which requires the user to explicitly grant access through a popup, is categorized as 'powerful', which we will explain later.
+    </div>
+  </div>
+</div>
+
+
+<p>Nowadays, many permissions exist—it’s not just the camera or microphone. There isn’t an official list of all the permissions supported by browsers or <a target="_blank" rel="noopener" href="https://github.com/w3c/permissions-registry/issues/22">standarized</a>, so I created what I believe is the most comprehensive permissions list (<a href="https://albertofdr.github.io/browser-permissions-tool/">link</a>). My list isn’t perfect, and not all the characteristics of the permissions may be accurate, but I believe it’s more useful than relying on the <a target="_blank" rel="noopener" href="https://github.com/w3c/webappsec-permissions-policy/blob/main/features.md">standard list</a> or checking the <a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/blink/renderer/core/permissions_policy/permissions_policy_features.json5">Chromium code list</a>. Alternatively, if you’re curious about which websites you have permissions granted on, you can check out: <code>about://settings/content/siteDetails?site=https://albertofdr.github.io/</code> (links to <code>about:</code> doesn’t work for security reasons, so you need to copy&amp;paste). </p>
+<table>
+<thead>
+<tr>
+<th>Example of Permissions</th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>accelerometer</td>
+<td>camera</td>
+<td>clipboard-read</td>
+<td>clipboard-write</td>
+</tr>
+<tr>
+<td>display-capture</td>
+<td>fullscreen</td>
+<td>geolocation</td>
+<td>gyroscope</td>
+</tr>
+<tr>
+<td>idle-detection</td>
+<td>local-fonts</td>
+<td>microphone</td>
+<td>notifications</td>
+</tr>
+</tbody></table>
+<p>It’s important to note that some permissions are special. For example, the permission to download a file from a website differs from typical permissions like camera access. This occurs when the browser encounters a content type that is not the usual formats, such as HTML or standard resources. Currently, there are two key characteristics of permissions. The first is whether it’s a powerful permission, and the second is whether it’s policy-controlled. I’ve included examples of different permissions and their characteristics based on the <a target="_blank" rel="noopener" href="https://w3c.github.io/permissions-registry/">Permissions Registry deprecated W3C Standard</a>, but let’s now dive into both of these in more detail.</p>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Powerful?</th>
+<th>Policy-controlled?</th>
+<th>Default allowlist</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>camera</td>
+<td>✅</td>
+<td>✅</td>
+<td><code>self</code></td>
+</tr>
+<tr>
+<td>geolocation</td>
+<td>✅</td>
+<td>✅</td>
+<td><code>self</code></td>
+</tr>
+<tr>
+<td>gamepad</td>
+<td>❌</td>
+<td>✅</td>
+<td><code>*</code></td>
+</tr>
+<tr>
+<td>notifications</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>push</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<h2 id="Powerful-Permission"><a href="#Powerful-Permission" class="headerlink" title="Powerful Permission"></a>Powerful Permission</h2><p>A powerful permission simply means that the specific feature requires explicit consent from the user. If the permission has not been granted before, a prompt will appear, and the user will need to accept it.  A common example of this is the <code>camera</code> and <code>microphone</code> popup that appears on meeting websites. In other examples, such as with <code>serial</code> or <code>usb</code> permissions, the user must select the device, which means these can also be categorized as powerful. An example of the javascript code to check the status (<strong>not</strong> for asking&#x2F;prompting the user) of the permission would be:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">checkPermission</span>(<span class="params">permission</span>)&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> navigator.<span class="property">permissions</span>.<span class="title function_">query</span>(&#123;<span class="string">&#x27;name&#x27;</span>: permission&#125;);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(result[<span class="string">&#x27;state&#x27;</span>])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">checkPermission</span>(<span class="string">&#x27;camera&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Policy-controlled-Permission"><a href="#Policy-controlled-Permission" class="headerlink" title="Policy-controlled Permission"></a>Policy-controlled Permission</h2><p>Now, what does it mean for a permission to be policy-controlled? It means that the permission can either be delegated or not, and as a result, there is also a default allowlist in place. Let’s use the camera permission as an example. The camera permission is both powerful and policy-controlled. Its allowlist is set to <code>self</code>. Let’s break this down:</p>
+<p>Because camera is a powerful permission, if a website wants to use it, it must prompt the user for consent, which the user needs to accept. On the other hand, the <code>self</code> allowlist means that only the top-level document (the main page) can access this permission. As a result, if there’s an iframe, such as one from <code>meet.example.org</code>, it will not be able to use the camera permission. In contrast, as it was previously some years ago, a default allowlist of <code>*</code> would allow the iframe to access the permission without an explicit delegation.</p>
+<div class="column" title="How to check if the context can access the permission">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+      To check if a context, such as an iframe from <code>meet.example.org</code>, is able to access a permission, we can use: <code>document.featurePolicy.allowedFeatures()</code>. There are also other functions available, so open the browser console and see what the browser suggests. Additionally, in the future, these functions may be moved under <code>document.permissionsPolicy</code>.
+    </div>
+  </div>
+</div>
+
+<p>That being said, you might wonder how an iframe could access the camera. The delegation of permissions fall into one of the following categories (<a target="_blank" rel="noopener" href="https://source.chromium.org/chromium/chromium/src/+/main:components/permissions/permission_util.cc;l=41">chromium source code</a>): </p>
+<ol>
+<li>Undelegated (e.g., <code>notification</code> and <code>push</code>).</li>
+</ol>
+<blockquote>
+<p>Permissions from the main frame are not delegated to child frames. An undelegated permission will only be granted to a child frame if the child frame’s origin was previously granted access to the permission when in a main frame.</p>
+</blockquote>
+<ol start="2">
+<li>Double-keyed (e.g., <code>storage-access</code>).</li>
+</ol>
+<blockquote>
+<p>Permission access is a function of both the requesting and embedding origins.</p>
+</blockquote>
+<ol start="3">
+<li>Delegated (e.g., <code>camera</code> and <code>microphone</code>).</li>
+</ol>
+<blockquote>
+<p>Permissions from the main frame are delegated to child frames. This is the default delegation mode for permissions. If a main frame was granted a permission that is delegated, its child frames will inherit that permission if allowed by the permissions policy.</p>
+</blockquote>
+<p>In this two last categories of delegation is where the <code>allow</code> attribute of the iframe comes into play. Continuing with the example the iframe would be created like: </p>
+<p><code>&lt;iframe src=&#39;//meet.example.org&#39; allow=&#39;camera&#39;&gt;&lt;/iframe&gt;</code>. </p>
+<p>This may not be a good practice, so make sure to keep reading until the <em>Good practices</em> section. </p>
+<div class="column" title="Iframe needs to re-prompt for permission?">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+      Let’s take an example: You visit the website <code>bubu.com</code>, which requests access to your camera, and you allow it. Later, an iframe from <code>meet.example.org</code> is included with the <code>allow='camera'</code> attribute. At this point, would the iframe be allowed to access the camera without re-prompting? <b>YES!</b>.
+    </div>
+  </div>
+</div>
+
+
+<p>Now that we’ve learned about the allow attribute and how permission delegation works, let’s look at the syntax. Without going into technical details just yet (we’ll cover that later in the blog), the value for a permission can be <code>&#39;none&#39;</code>, <code>&#39;self&#39;</code>, <code>&#39;src&#39;</code>, an origin (<code>https://albertofdr.github.io/</code>), or <code>*</code>. When the permission delegated doesn’t have an explicit directive (e.g., <code>&#39;self&#39;</code>), the allowlist defaults to the iframe’s <code>&#39;src&#39;</code> attribute. I’ll revisit this point when discussing the Permissions-Policy Standard later. You might be wondering how to delegate multiple permissions. This can be done by separating them with the <code>;</code> character. A complete example would be: </p>
+<p><code>allow=&quot;camera; geolocation &#39;self&#39; https://tracker.com; display-capture &#39;none&#39;&quot;</code>. </p>
+<p>To help you understand how the directives work, I’ve created the following table.</p>
+<table>
+<thead>
+<tr>
+<th>albertofdr.github.io</th>
+<th>albertofdr.github.io</th>
+<th>permission.site (Iframe)</th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th>Camera Access&#x2F;Prompt</th>
+<th>Iframe Allow Delegation</th>
+<th>Camera Access&#x2F;Prompt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅</td>
+<td>no allow</td>
+<td>❌  <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>allow</code></td>
+<td>❌  <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20allow%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>allow=&#39;&#39;</code></td>
+<td>❌  <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20allow=%27%27%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>allow=camera</code></td>
+<td>✅   <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20allow=%27camera%27%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>allow=&quot;camera &#39;self&#39;&quot;</code></td>
+<td>❌   <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20allow=%22camera%20%27self%27%22%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>allow=&#39;camera https://permission.site/&#39;</code></td>
+<td>✅   <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20allow=%22camera%20https://permission.site/%22%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>allow=&quot;camera &#39;https://permission.site/&#39;&quot;</code></td>
+<td>❌   <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20allow=%22camera%20%27https://permission.site/%27%22%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>allow=&#39;camera *&#39;</code></td>
+<td>✅    <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20allow=%22camera%20*%22%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>allow=&quot;camera &#39;*&#39;&quot;</code></td>
+<td>❌    <a href="https://albertofdr.github.io/dummy-pages/testing-pages/live-editor.html?html=%3Ciframe%20src=%27//permission.site%27%20allow=%22camera%20%27*%27%22%20height=800%20width=800%3E%3C/iframe%3E%20">link</a></td>
+</tr>
+</tbody></table>
+<p>At this point, we’ve covered permissions and how they can be delegated to other contexts. Now, you might be wondering how a developer can completely restrict the use of a permission if it’s not needed. This is where the Permissions-Policy <strong>response header</strong> (formerly known as Feature-Policy) comes into play.</p>
+<div class="column" title="Permissions Policy header vs Feature Policy header">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+    The Permissions-Policy header was formerly known as the Feature-Policy header. The main difference between them is the syntax, so it’s important to be cautious. Many websites still use the old Feature-Policy syntax in the Permissions-Policy header, which will not work.
+    </div>
+  </div>
+</div>
+
+<p><img src="/web-security-class/browser/browser.permissions/pp-header.svg" alt="pp-header"></p>
+<p>In simple terms, the Permissions-Policy header allows developers to opt-out of or restrict the use and delegation of permissions. At this moment, only supported by Chromium-based browsers and deployed in around 27% of the websites (<a target="_blank" rel="noopener" href="https://chromestatus.com/metrics/feature/timeline/popularity/3850">chrome status</a>). Continuing with the camera example, setting the camera permission to <code>*</code> does not override the default allowlist of <code>&#39;self&#39;</code>. As a result, the permission will not be delegated unless the allow attribute is explicitly used. An example of a Permissions-Policy header would be: </p>
+<p><code>Permissions-Policy: camera=(), microphone=()</code></p>
+<p>This header would disallow the use of both the <code>camera</code> and <code>microphone</code> in ANY CONTEXT. Just like before, let’s take a look at this new table.</p>
+<table>
+<thead>
+<tr>
+<th>albertofdr.github.io</th>
+<th>albertofdr.github.io</th>
+<th>albertofdr.github.io</th>
+<th>permission.site (Iframe)</th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th>Permissions Policy Header</th>
+<th>Access&#x2F;Prompt</th>
+<th>Iframe Allow Delegation</th>
+<th>Access&#x2F;Prompt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>No Header</td>
+<td>✅</td>
+<td>not delegate</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>No Header</td>
+<td>✅</td>
+<td>delegate</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>camera=()</code></td>
+<td>❌</td>
+<td>delegate</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>camera=&#39;self&#39;</code></td>
+<td>✅</td>
+<td>delegate</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>camera=(&#39;self&#39; permission.site)</code></td>
+<td>✅</td>
+<td>delegate</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>camera=*</code></td>
+<td>✅</td>
+<td>not delegate</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>camera=*</code></td>
+<td>✅</td>
+<td>delegate</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<p>Now that we understand how the Permissions-Policy header works for the top-level document, let’s explore how the Permissions-Policy header in iframes affects the usage.</p>
+<table>
+<thead>
+<tr>
+<th>WEBSITE TLD</th>
+<th>WEBSITE TLD</th>
+<th>WEBSITE TLD</th>
+<th>permission.site (Iframe)</th>
+<th>permission.site (Iframe)</th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th>Permissions Policy Header</th>
+<th>Access&#x2F;Prompt</th>
+<th>Iframe Allow Delegation</th>
+<th>Permissions-Policy Header</th>
+<th>Access&#x2F;Prompt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>No Header</td>
+<td>✅</td>
+<td>not delegate</td>
+<td>No Header</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>No Header</td>
+<td>✅</td>
+<td>not delegate</td>
+<td><code>camera=*</code></td>
+<td>❌</td>
+</tr>
+<tr>
+<td>No Header</td>
+<td>✅</td>
+<td>delegate</td>
+<td>No Header</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>No Header</td>
+<td>✅</td>
+<td>delegate</td>
+<td><code>camera=()</code></td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>camera=()</code></td>
+<td>❌</td>
+<td>delegate</td>
+<td>No Header</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>camera=self</code></td>
+<td>✅</td>
+<td>delegate</td>
+<td>No Header</td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>camera=*</code></td>
+<td>✅</td>
+<td>delegate</td>
+<td>No Header</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>camera=*</code></td>
+<td>✅</td>
+<td>delegate</td>
+<td><code>camera=()</code></td>
+<td>❌</td>
+</tr>
+<tr>
+<td><code>camera=*</code></td>
+<td>✅</td>
+<td>delegate</td>
+<td><code>camera=self</code></td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<p>As an exercise for the reader, I will add a few headers and allow attributes. The goal is to determine whether the permission can be used or is blocked in different contexts. Remember for the exercise that the default allowlist of <code>camera</code> is <code>self</code>.</p>
+<style>
+  details {
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative; /* Needed for positioning the bar inside */
+    transition: all 0.3s ease-in-out;
+  }
+  
+  summary {
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    color: #007BFF;
+  }
+  
+  summary:hover {
+    text-decoration: underline;
+  }
+  
+  details[open] summary {
+    color: #0056b3;
+  }
+  
+  .close-bar-browser-permissions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%; /* Full height of the details */
+    width: 15px; /* Adjust width to your preference */
+    background-color:   #ff9b85 ; /* Red for the bar */
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0 8px 8px 0; /* Rounded corners on the right side */
+    transition: background-color 0.2s;
+    writing-mode: vertical-rl; /* Vertical text orientation */
+    text-align: center;
+  }
+  
+  .close-bar-browser-permissions:hover {
+    background-color: #f44336; /* Darker red on hover */
+  }
+
+  .centered-text-browser-permissions {
+  text-align: center; /* Center the text */
+  margin-top: 1em; /* Add some space above */
+  font-style: italic; /* Optional: make it italic for emphasis */
+  color: #555; /* Optional: light gray for subtlety */
+}
+</style>
+
+<details id="details-section">
+  <summary>Click to see a few simple scenarios to try out as exercises.</summary>
+  
+<table>
+<thead>
+<tr>
+<th>Exercise 1</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera?</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=()</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. The header blocks the use of the permission.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 2</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera?</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(),</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+Yes. The trailing comma breaks the header, rendering it ineffective, as if it wasn’t defined.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 3</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera?</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=&#39;none&#39;</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+Yes. The header uses 'none' with quotes, but directives should not be enclosed in quotes.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 4</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera?</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=none</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. The header correctly blocks access to the camera.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 5</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera?</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(none)</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. The header prevents the camera from being used.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 6</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera? The website origin is <code>https://meet.bubu.com/</code>.</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(https://meet.bubu.com/)</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. Since the URL is not enclosed in double quotes, the origin is not recognized as origin directive.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 7</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera? The website origin is <code>https://bubu.com/</code>.</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(&#39;https://meet.bubu.com/&#39;)</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+Yes. Using single quotes breaks the parsing, invalidating the header entirely.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 8</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera? The website origin is <code>https://bubu.com/</code>.</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(&quot;https://meet.bubu.com/&quot;)</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. The header is valid and restricts access to only the origin <code>meet.bubu.com</code>.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 9</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera? The website origin is <code>https://bubu.com/</code>.</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(), microphone=(https://meet.bubu.com/)</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. While the microphone policy doesn’t apply correctly as before, it doesn’t affect the camera policy, which remains functional.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 10</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera? The website origin is <code>https://bubu.com/</code>.</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(), microphone=(&#39;https://meet.bubu.com/&#39;)</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+Yes. Single quotes break the parsing, causing the browser to discard the header entirely.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 11</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera? The website origin is <code>https://bubu.com/</code>.</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(), microphone=(&quot;https://meet.bubu.com/&quot;)</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. Both policies are correctly configured and work as expected.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 12</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the iframe have permission to access the camera?</p>
+</blockquote>
+<p><code>&lt;iframe src=&#39;https://permission.site&#39; allow=&quot;camera&quot;&gt;&lt;/iframe&gt;</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+Yes. With no header restrictions, and delegation defaulting to 'src', <code>permission.site</code> will have access to the camera if no redirects to different origin occur.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 13</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the iframe have permission to access the camera?</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=(*)</code><br><code>&lt;iframe src=&#39;https://permission.site&#39;&gt;&lt;/iframe&gt;</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. The header can only opt-out or restrict permissions; it cannot grant delegation on its own.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 14</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the iframe have permission to access the camera?</p>
+</blockquote>
+<p><code>Permissions-Policy: camera=self</code><br><code>&lt;iframe src=&#39;https://permission.site&#39; allow=&quot;camera&quot;&gt;&lt;/iframe&gt;</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. The header is properly configured to restrict access to the self context.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Exercise 15</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the iframe have permission to access the camera? In this case <code>storage-access</code> default allowlist is <code>*</code>.</p>
+</blockquote>
+<p><code>&lt;iframe src=&#39;https://permission.site&#39; allow=&quot;storage-access &#39;none&#39;;&quot;&gt;&lt;/iframe&gt;</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. Access is explicitly disabled in the delegation.
+</div>
+
+<div class="centered-text-browser-permissions">
+I bet you got at least one wrong!. 
+</div>
+
+  <div class="close-bar-browser-permissions" onclick="document.getElementById('details-section').removeAttribute('open');">
+    Close
+  </div>
+  
+</details>
+
+<p>With this first section, we now have a solid overview of how permissions work in today’s web ecosystem. Let’s dive into the standards that govern and explain this.</p>
+<h1 id="Permissions-W3C-Standards"><a href="#Permissions-W3C-Standards" class="headerlink" title="Permissions W3C Standards"></a>Permissions W3C Standards</h1><p>As of early 2025, two primary standards explain this: the <a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions/">Permissions Standard</a> and the <a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions-policy/">Permissions-Policy Standard</a>. Additionally, individual standards must specify whether a permission is powerful or policy-controlled. There is also a <a target="_blank" rel="noopener" href="https://w3c.github.io/permissions-registry/">Permission Registry standard</a>, but it has been <a target="_blank" rel="noopener" href="https://github.com/w3c/permissions-registry/issues/22">deprecated</a>. Significant changes to both standards can be expected in the coming months and years. Furthermore, some corner cases and core aspects of these standards remain in discussion among major browser vendors and developers.</p>
+<h2 id="Permissions-Standard"><a href="#Permissions-Standard" class="headerlink" title="Permissions Standard"></a><a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions/">Permissions Standard</a></h2><p>In simple terms, the Permissions Standard defines powerful permissions — or, as described in the specification:</p>
+<blockquote>
+<p>This specification defines common infrastructure that other specifications can use to interact with browser permissions. These permissions represent a user’s choice to allow or deny access to “powerful features” of the platform. For developers, the specification standardizes an API to query the permission state of a powerful feature, and be notified if a permission to use a powerful feature changes state.</p>
+</blockquote>
+<p>For a detailed explanation of what ‘powerful’ means, refer to <a target="_blank" rel="noopener" href="https://github.com/w3c/permissions/issues/451">this issue (link)</a>. Additionally, it’s worth noting that the standard defines the <code>navigator.permissions.query</code> function. This is the function used to check if a permission has been <code>granted</code>, can be <code>prompt</code> or is <code>denied</code>.</p>
+<h2 id="Permissions-Policy-Standard-formerly-Feature-Policy"><a href="#Permissions-Policy-Standard-formerly-Feature-Policy" class="headerlink" title="Permissions Policy Standard (formerly Feature Policy)"></a><a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions-policy/">Permissions Policy Standard (formerly Feature Policy)</a></h2><p>The Permissions-Policy standard is a bit more complex and can be somewhat confusing to understand. I’ll do my best to explain it clearly. This standard defines the Permissions-Policy header and the delegation using the allow attribute including the definition of default allowlist. Additionally, any individual standard that defines a policy-controlled feature with the corresponding default allowlist should reference this one. </p>
+<blockquote>
+<p>This specification defines a mechanism that allows developers to selectively enable and disable use of various browser features and APIs.</p>
+</blockquote>
+<p>Starting with the structured header: this means that a misplaced comma (<code>camera=(),</code>) or any unexpected element can break the browser’s serialization, causing it to remove the header. The consequence of this is that the website would function as if the header was never defined. For each permission, separated by a comma (<code>camera=(), microphone=()</code>), the header defines a set of directives, either individually (<code>camera=self</code>) or in groups (<code>camera=(self &quot;https://bubu.com/&quot;)</code>), such as <code>self</code>, <code>src</code>, <code>none</code>, <code>*</code>, or a specific origin. For the allow attribute, permissions should be separated by a semicolon <code>;</code>. Moreover, the standard also defines how the default allowlist works, specifying that the default allowlist for any permission can only be <code>self</code> or <code>*</code> (<a target="_blank" rel="noopener" href="https://github.com/w3c/webappsec-permissions-policy/issues/513">with <code>none</code> being considered as an option</a>). This spec also defines how to check if a permission is allowed in your context. This is done using the <code>document.permissionsPolicy.*</code> (e.g., <code>document.permissionsPolicy.allowedFeatures()</code>) functions. As of January 2025, the functions are still part of the old Feature-Policy object, such as <code>document.featurePolicy.allowedFeatures()</code>. In this specification, the delegation using the <code>allow</code> tag is also included, and one important thing to note is the following:</p>
+<blockquote>
+<p>The allowlist for the features named in the attribute may be empty; in that case, the default value for the allowlist is ‘src’, which represents the origin of the URL in the iframe’s src attribute.</p>
+</blockquote>
+<h2 id="Individual-Permissions-Standard-Ex-Media-Capture-and-Streams"><a href="#Individual-Permissions-Standard-Ex-Media-Capture-and-Streams" class="headerlink" title="Individual Permissions Standard (Ex: Media Capture and Streams)"></a>Individual Permissions Standard <a target="_blank" rel="noopener" href="https://www.w3.org/TR/mediacapture-streams/">(Ex: Media Capture and Streams)</a></h2><p>Each individual specification related to a feature may refer to either the Permissions Standard or the Permissions-Policy Standard, depending on the feature’s characteristics. It typically also defines a permission associated with that feature. If the feature is policy-controlled, the specification should define the default allowlist (<a target="_blank" rel="noopener" href="https://www.w3.org/TR/mediacapture-streams/#permissions-policy-integration">standard example</a>). Sometimes, because the term ‘powerful’ is relatively new, some standards may instead say something like ‘the user needs to grant the permission’.</p>
+<div class="column" title="Reading Standards and Specifications">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+      If you want to learn more, give the spec a try. While you might not fully understand how the standards are written at first, it’s worth exploring.
+    </div>
+  </div>
+</div>
+
+
+<h1 id="Permission-Common-Misconceptions"><a href="#Permission-Common-Misconceptions" class="headerlink" title="Permission Common Misconceptions"></a>Permission Common Misconceptions</h1><h3 id="1-Permissions-Policy-only-defines-the-Permissions-Policy-Header"><a href="#1-Permissions-Policy-only-defines-the-Permissions-Policy-Header" class="headerlink" title="1. Permissions-Policy only defines the Permissions-Policy Header"></a>1. Permissions-Policy only defines the Permissions-Policy Header</h3><p>Some people may think that the Permissions-Policy standard only defines the header. This is completely incorrect. The standard actually defines the entire policy and delegation ecosystem, including delegation, as we’ve seen. In my opinion, this is a great starting point and should be pushed forward.</p>
+<h3 id="2-All-Defined-Permissions-are-Powerful-and-Policy-controlled"><a href="#2-All-Defined-Permissions-are-Powerful-and-Policy-controlled" class="headerlink" title="2. All Defined Permissions are Powerful and Policy controlled"></a>2. All Defined Permissions are Powerful and Policy controlled</h3><p>As the Permissions standard and Permission Registry standard states:</p>
+<blockquote>
+<p>Not every policy-controlled feature is powerful features. For example, “web-share” is a policy-controlled feature that is not classified as a powerful feature because it doesn’t require express permission to be used. However, with very few exceptions, most powerful features are also policy-controlled features. For example, “geolocation” is both a policy-controlled feature and a powerful feature, as it requires express permission to be used. Please refer to the Permissions specification for guidance on how to specify a powerful feature.</p>
+</blockquote>
+<p>One of the things that browser vendors and those working on the standard should do is define a comprehensive list of permissions. This way, developers wouldn’t need to rely on <a href="https://albertofdr.github.io/browser-permissions-tool/index.html">my list</a> and would have a clear understanding of the characteristics of each permission. It would also allow for defining permissions in the header and disabling those that developers know are not being used.</p>
+<h3 id="3-Policy-Declaration-when-iframe-A-includes-iframe-B"><a href="#3-Policy-Declaration-when-iframe-A-includes-iframe-B" class="headerlink" title="3. Policy Declaration when iframe A includes iframe B"></a>3. Policy Declaration when iframe A includes iframe B</h3><p><img src="/web-security-class/browser/browser.permissions/pp-iframe-inside-iframe.svg" alt="iframe-inside-iframe"></p>
+<p>One of the biggest sources of confusion for website developers is what happens to the policy declared by the header when an iframe contains another iframe. Developers often believe they can define a policy that affects nested iframes. However, this would violate one of the core principles of the web: the Same-Origin Policy (SOP). In other words, once a permission is delegated to a different context, that context can do whatever it wants with the permission. So, in the example, if the permission is delegated to Iframe A, Iframe A could then delegate it to Iframe B. There is no header or mechanism that a website developer can use to prevent this second delegation. This is one of the reasons developers should be cautious about which contexts or iframes they delegate permissions to.</p>
+<h3 id="4-Misleading-prompt-text-when-Permission-requested-from-an-iframe"><a href="#4-Misleading-prompt-text-when-Permission-requested-from-an-iframe" class="headerlink" title="4. Misleading prompt text when Permission requested from an iframe"></a>4. Misleading prompt text when Permission requested from an iframe</h3><p><img src="/web-security-class/browser/browser.permissions/prompt-from-iframe.svg" alt="prompt-from-iframe"></p>
+<p>Developers may assume that when an iframe, like <code>meet.example.org</code>, is included in <code>albertofdr.github.io</code> and attempts to access a permission, the prompt would say something like: ‘<code>meet.example.org</code> wants to access the permission’. However, this is not the case. The prompt will actually say: ‘<code>albertofdr.github.io</code> wants to access the permission.’</p>
+<h3 id="5-What-happens-when-a-new-iframe-want-the-already-granted-permission"><a href="#5-What-happens-when-a-new-iframe-want-the-already-granted-permission" class="headerlink" title="5. What happens when a new iframe want the already granted permission"></a>5. What happens when a new iframe want the already granted permission</h3><p>A typical developer might assume that when a new iframe is created, the previously granted permissions would not be accessible. However, this is not the case. Once a permission has been granted—whether now or 30 days ago (depends on the browser)—any iframe (with the appropriate delegation, if needed) will have access to that permission.</p>
+<h3 id="6-Dynamically-Delegating-Permissions"><a href="#6-Dynamically-Delegating-Permissions" class="headerlink" title="6. Dynamically Delegating Permissions"></a>6. Dynamically Delegating Permissions</h3><p>Some people might think that changing the allow attribute of an iframe would immediately affect the delegated permissions, but this is not true. Delegation cannot be set dynamically. In other words, once the document context of the iframe is created, changing the delegation requires two steps: first, update the allow attribute, and second, reload the iframe’s context (e.g., <code>window.location.reload()</code>). Now, I’ll present different cases to clarify this. Let’s take an example of a website including an iframe.</p>
+<style>
+/* Styling the menu */
+.menu-browser-permissions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.menu-browser-permissions button {
+  margin: 0 5px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  transition: background-color 0.2s ease;
+}
+
+.menu-browser-permissions button:hover {
+  background-color: #e0e0e0;
+}
+
+.menu-browser-permissions button.active {
+  background-color: #f52d1f;
+  color: white;
+}
+
+.table-container-browser-permissions {
+  display: none;
+}
+
+.table-container-browser-permissions.active {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+</style>
+
+<div class="menu-browser-permissions">
+  <button onclick="showTable(1)" id="btn-1-browser-permissions" class="active">Case 1</button>
+  <button onclick="showTable(2)" id="btn-2-browser-permissions">Case 2</button>
+  <button onclick="showTable(3)" id="btn-3-browser-permissions">Case 3</button>
+  <button onclick="showTable(4)" id="btn-4-browser-permissions">Case 4</button>
+  <button onclick="showTable(5)" id="btn-5-browser-permissions">Case 5</button>
+  <button onclick="showTable(6)" id="btn-6-browser-permissions">Case 6</button>
+  <button onclick="showTable(7)" id="btn-7-browser-permissions">Case 7</button>
+  <button onclick="showTable(8)" id="btn-8-browser-permissions">Case 8</button>
+  <button onclick="showTable(9)" id="btn-9-browser-permissions">Case 9</button>
+</div>
+
+<div id="table-1-browser-permissions" class="table-container-browser-permissions active">
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare allow <code>allow=&quot;camera *&quot;</code></td>
+</tr>
+<tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera allowed ✅</td>
+</tr>
+<tr>
+<td><code>abc.org</code> –&gt; <em>REDIRECT</em> –&gt; <code>xyz.org</code></td>
+</tr>
+<tr>
+<td><code>xyz.org</code> camera allowed ✅</td>
+</tr>
+</tbody></table>
+</div>
+
+<div id="table-2-browser-permissions" class="table-container-browser-permissions">
+
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare allow <code>allow=&quot;camera&quot;</code></td>
+</tr>
+<tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera allowed ✅</td>
+</tr>
+<tr>
+<td><code>abc.org</code> –&gt; <em>REDIRECT</em> –&gt; <code>xyz.org</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+</tbody></table>
+</div>
+
+
+<div id="table-3-browser-permissions" class="table-container-browser-permissions">
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td>declare allow <code>allow=&quot;camera *&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+</tbody></table>
+</div>
+
+<div id="table-4-browser-permissions" class="table-container-browser-permissions">
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td>declare allow <code>allow=&quot;camera *&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td><code>abc.org</code> –&gt; <em>REDIRECT</em> –&gt; <code>xyz.org</code></td>
+</tr>
+<tr>
+<td><code>xyz.org</code> camera allowed ✅</td>
+</tr>
+</tbody></table>
+</div>
+<div id="table-5-browser-permissions" class="table-container-browser-permissions">
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td>declare allow <code>allow=&quot;camera *&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td><code>abc.org</code> uses <code>window.location.reload()</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera allowed ✅</td>
+</tr>
+</tbody></table>
+</div>
+<div id="table-6-browser-permissions" class="table-container-browser-permissions">
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td>declare allow <code>allow=&quot;camera *&quot;</code></td>
+</tr>
+<tr>
+<td>declare src <code>src=&quot;abc.org#bubu&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td><em>Explanation: Fragment is not reloading the document context.</em></td>
+</tr>
+</tbody></table>
+</div>
+<div id="table-7-browser-permissions" class="table-container-browser-permissions">
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td>declare allow <code>allow=&quot;camera *&quot;</code></td>
+</tr>
+<tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera allowed ✅</td>
+</tr>
+<tr>
+<td><em>Explanation: Setting <code>src</code> produces a reload.</em></td>
+</tr>
+</tbody></table>
+</div>
+<div id="table-8-browser-permissions" class="table-container-browser-permissions">
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td>declare allow <code>allow=&quot;camera *&quot;</code></td>
+</tr>
+<tr>
+<td>declare src <code>src=&quot;abc.org/bubu/profile&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera allowed ✅</td>
+</tr>
+<tr>
+<td><em>Explanation: Setting path produces a new context.</em></td>
+</tr>
+</tbody></table>
+</div>
+<div id="table-9-browser-permissions" class="table-container-browser-permissions">
+
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>declare src <code>src=&quot;abc.org&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera denied ❌</td>
+</tr>
+<tr>
+<td>declare allow <code>allow=&quot;camera *&quot;</code></td>
+</tr>
+<tr>
+<td>declare src <code>src=&quot;abc.org/?user=13&quot;</code></td>
+</tr>
+<tr>
+<td><code>abc.org</code> camera allowed ✅</td>
+</tr>
+</tbody></table>
+</div>
+
+<script>
+function showTable(index) {
+  // Hide all tables
+  document.querySelectorAll('.table-container-browser-permissions').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.menu-browser-permissions button').forEach(el => el.classList.remove('active'));
+  
+  // Show the selected table
+  document.getElementById(`table-${index}-browser-permissions`).classList.add('active');
+  document.getElementById(`btn-${index}-browser-permissions`).classList.add('active');
+}
+</script>
+
+
+<h3 id="7-Permissions-Policy-Header-vs-Feature-Policy-Header"><a href="#7-Permissions-Policy-Header-vs-Feature-Policy-Header" class="headerlink" title="7. Permissions-Policy Header vs Feature Policy Header"></a>7. Permissions-Policy Header vs Feature Policy Header</h3><p>The main difference, aside from the name, lies in the syntax used in the header. Take a look at these two examples:</p>
+<blockquote>
+<p>Feature-Policy: camera ‘self’; geolocation ‘none’</p>
+</blockquote>
+<blockquote>
+<p>Permissions-Policy: camera&#x3D;’self’, geolocation&#x3D;()</p>
+</blockquote>
+<p>If you’re curious, when both headers are declared for the same permission, the Permissions-Policy directive takes precedence. However, if a permission directive is only present in the Feature-Policy header, it will still work and apply the policy. Remember that still only applies to Chromium-based browsers.</p>
+<h1 id="HTML-lt-permission-gt-tag-PEPC"><a href="#HTML-lt-permission-gt-tag-PEPC" class="headerlink" title="HTML &lt;permission&gt; tag (PEPC)"></a>HTML &lt;permission&gt; tag (PEPC)</h1><p><img src="/web-security-class/browser/browser.permissions/new-asking.svg" alt="newasking"></p>
+<p>In mid-2024, Google folks introduced the <code>&lt;permission&gt;</code> HTML tag (<a target="_blank" rel="noopener" href="https://developer.chrome.com/blog/permission-element-origin-trial">blog</a>). The two major changes in their <a target="_blank" rel="noopener" href="https://github.com/WICG/PEPC/tree/main">proposal</a> are, first, a visual change that blurs the entire screen instead of using a traditional prompt, and second, the introduction of a button-like element to request permissions</p>
+<p><code>&lt;permission type=&quot;camera microphone&quot;&gt;&lt;/permission&gt;</code>. </p>
+<p>If you’re interested, feel free to check out their <a target="_blank" rel="noopener" href="https://permission.site/pepc.html">demo</a> or the <a target="_blank" rel="noopener" href="https://github.com/WICG/PEPC/tree/main">explainer</a>.</p>
+<h1 id="Good-practices"><a href="#Good-practices" class="headerlink" title="Good practices"></a>Good practices</h1><p>In the following lines, I’ll share a few pieces of advice, but keep in mind that these may not apply to every case and are not foolproof. Starting with the Permissions-Policy header, since there are currently <a target="_blank" rel="noopener" href="https://github.com/w3c/webappsec-permissions-policy/issues/481">no permission groups</a> and each permission must be disabled manually, a good starting point would be the following setup. The goal is to <strong>disable all types of powerful browser features that are not commonly used</strong> and are only required by specific categories of websites. However, I recommend reviewing <a href="https://albertofdr.github.io/browser-permissions-tool/index.html">my list</a> and keeping in mind that this may change in the future as new permissions are introduced.</p>
+<blockquote>
+<p>camera&#x3D;(), captured-surface-control&#x3D;(), clipboard-read&#x3D;(), display-capture&#x3D;(), geolocation&#x3D;(), idle-detection&#x3D;(), local-fonts&#x3D;(), microphone&#x3D;(), midi&#x3D;(), nfc&#x3D;(), screen-wake-lock&#x3D;(), system-wake-lock&#x3D;(), usb&#x3D;(), window-management&#x3D;(), xr-spatial-tracking&#x3D;()</p>
+</blockquote>
+<p>If it’s not strictly necessary, I always recommend avoiding changes to the header or adding third-party widgets, as you are ultimately responsible for what third parties do with your users’ data. Another important point to address is permission delegation. Similar to header directives, both website developers and third-party widget developers should avoid delegating permissions. Doing so increases the attack surface and the risk of vulnerabilities, such as permission hijacking.</p>
+<p>Let’s consider a real-world example: a support chat widget that facilitates communication between clients and company representatives to address queries. Each company using such a widget would include it with the same origin, modifying, for instance, a parameter like id to identify the specific company. Based on this id and the plugins installed in the chat widget, <strong>only the necessary permission delegations should be used</strong>. Third-party companies should avoid using a generic template that delegates all potentially required permissions. (<em>If you’re curious about these kinds of cases and want to learn more, you will have to wait and see if my academic paper gets accepted soon</em> 💀).</p>
+<h1 id="Thoughts-on-Security-Risks"><a href="#Thoughts-on-Security-Risks" class="headerlink" title="Thoughts on Security Risks"></a>Thoughts on Security Risks</h1><p>At this point, I’d like to mention two types of attacks that came to mind after watching a <a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1r-IoO4zATUt4X2KyND16EoDiho5q56KdjqqfR5U7XaY/edit?resourcekey=0-ybts583CqEUxeJsUUXYpmA">Google presentation by the great researcher jkokatsu (shhnjk)</a> or this <a href="">academic paper (<em>Studying the Privacy Issues of the Incorrect Use of the Feature Policy</em>)</a> by <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/belizkaleli/">Beliz Kaleli</a>. The first case involves a website that uses powerful permissions, such as access to the camera and microphone. Let’s take <code>meet.bubu.com</code> as an example.</p>
+<p><img src="/web-security-class/browser/browser.permissions/htmli.svg" alt="htmli"></p>
+<p>Imagine that the website has a robust Content-Security-Policy but lacks a Permissions-Policy. In this case, the bug discovered and explained in the following section to bypass <code>self</code> directives not only applies but could make the situation even worse. The CSP header, which lacks directives for including other documents (e.g., <code>frame-src</code>), effectively prevents any XSS scripting attacks or CSS exfiltration. At this point, client-side attacks would be significantly reduced. Now, let’s say you find an HTML injection on the page, whether stored or reflected. On its own, this would be a vulnerability without much impact due to existing mitigations. However, the point I want to emphasize here is how HTML injection could be escalated into a permission hijacking attack. Why? Because the permissions have already been granted, and you could potentially delegate access to the <code>camera</code>, <code>microphone</code>, and <code>display-capture</code> to an attacker’s page. This attack would allow the attacker to make use of features from their page. Furthermore, while videoconferencing websites often provide an option to turn off the camera or microphone, this does not revoke the permission. As a result, the attacker could still listen in on or view people who are theoretically muted. Even in cases where the permission has not been granted before, you can attempt to trick the user due to the misleading prompt explained earlier.</p>
+<p><img src="/web-security-class/browser/browser.permissions/supplychain.svg" alt="chain"></p>
+<p>The second type of attack I have in mind involves widgets with delegated permissions. Let’s imagine a very common widget from <code>bubuchat.com</code> that is embedded on thousands of pages, used by thousands of users every day. This widget, for certain functionalities, has delegated access to important permissions, such as <code>display-capture</code>. If an attacker is able to exploit this company and alter the widget, they would gain the ability to modify the code that has access to the permissions. In cases where the permission has not been granted yet, the attacker would only need to request the permission, because, as explained earlier, the prompt would display the website’s name, not the widget’s.</p>
+<h1 id="Headerless-Document-Strikes-Again"><a href="#Headerless-Document-Strikes-Again" class="headerlink" title="Headerless Document Strikes Again"></a>Headerless Document Strikes Again</h1><p>As a final point, I’d like to mention a bypass I discovered due to a specification issue, which affects all Chromium-based browsers. Some of this, along with many other findings, may be published, if I’m lucky, in an academic paper.</p>
+<p>In simple terms, there is a way to delegate a permission to a third party, even when the Permissions-Policy header restricts that permission to <code>self</code> (e.g., <code>camera=self</code>). You might be wondering, how is this possible?</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>meet.com</th>
+<th>headerless document (data: URI)</th>
+<th></th>
+<th>attacker.com</th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Permissions-Policy Header</th>
+<th>Camera Access&#x2F;Prompt</th>
+<th>Allow Delegation</th>
+<th>Camera Access&#x2F;Prompt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Expected</td>
+<td><code>camera=self</code></td>
+<td>✅</td>
+<td>delegate (<code>allow=camera</code>)</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Real</td>
+<td><code>camera=self</code></td>
+<td>✅</td>
+<td>delegate (<code>allow=camera</code>)</td>
+<td>✅🐛</td>
+</tr>
+</tbody></table>
+<p>As shown in the table and title, the key lies in using a headerless document. These documents, which lack response headers (hence the term ‘headerless’), inherit headers in cases like Content-Security-Policy to prevent bypasses (<a target="_blank" rel="noopener" href="https://w3c.github.io/webappsec-csp/#security-inherit-csp">CSP Standard</a>). Currently, however, this does not happen with Permissions-Policy, allowing us to use this technique to bypass the ‘self’ restriction. This issue has been reported in the standard but remains unresolved, as you can see here:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/w3c/webappsec-permissions-policy/issues/552">Reported issue in Permissions-Policy W3C Standard.</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/whatwg/html/issues/10461">Reported issue in HTML Standard issue.</a></li>
+</ul>
+<h2 id="Thanks-for-reading"><a href="#Thanks-for-reading" class="headerlink" title="Thanks for reading"></a>Thanks for reading</h2><p>Part of this research was conducted in collaboration with the excellent researcher, <a target="_blank" rel="noopener" href="https://cispa.de/de/people/c01jara">Jannis</a>.<br>If you have any recommendation&#x2F;mistake&#x2F;feedback, feel free to reach me <a target="_blank" rel="noopener" href="https://twitter.com/alberto_fdr">twitter</a> :)</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
+<li><em>Recommended:</em>  <a target="_blank" rel="noopener" href="https://textslashplain.com/2022/02/15/smarter-defaults-by-paying-attention/">Smarter Defaults by Paying Attention. ericlaw.</a></li>
+<li><em>Recommended:</em> <a target="_blank" rel="noopener" href="https://textslashplain.com/2020/05/18/browser-basics-user-gestures/">Browser Basics: User Gestures. ericlaw. </a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions-policy/">Permissions-Policy Standard</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions/">Permissions Standard</a></li>
+<li><a target="_blank" rel="noopener" href="https://w3c.github.io/permissions-registry/">Permissions Registry Standard</a></li>
+</ul>
+<h2 id="Other-articles-of-the-blog"><a href="#Other-articles-of-the-blog" class="headerlink" title="Other articles of the blog:"></a>Other articles of the blog:</h2><ul>
+<li><a href="https://albertofdr.github.io/web-security-class/advanced/web.tracking">Everything you ever wanted to know about Web Tracking (but were afraid to ask).</a></li>
+<li><a href="https://albertofdr.github.io/web-security-class/browser/web.to.app">Web-to-App Communication.</a></li>
+<li><a href="https://albertofdr.github.io/web-security-class/incoming/storage.partitioning">Storage Partitioning 📂: From each according to his ability, to each according to his needs.</a></li>
+</ul>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+                © 2025 bubu
+                <br>
+            
+            
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    
+    
+
+  </body>
+</html>

@@ -324,6 +324,8 @@ The standard RFC for cookies further elaborates on these concerns. In this lates
 
 ![rfc11](/advanced/web.tracking/rfc2011.png)
 
+### Thanks for reading
+If you have any recommendation/mistake/feedback, feel free to reach me [twitter](https://twitter.com/alberto_fdr) :)
 
 ## References:
 
@@ -332,6 +334,8 @@ The standard RFC for cookies further elaborates on these concerns. In this lates
 -   Panopticlick/CoverYourTracks: [Link](https://coveryourtracks.eff.org/)
 -   Fingerprintjs2. Get your FP: [Link](https://valve.github.io/fingerprintjs2/).
 
+## Other articles of the blog:
 
-### Thanks for reading
-If you have any recommendation/mistake/feedback, feel free to reach me [twitter](https://twitter.com/alberto_fdr) :)
+-   [Storage Partitioning 📂: From each according to his ability, to each according to his needs.](https://albertofdr.github.io/web-security-class/incoming/storage.partitioning)
+-   [How to build your custom browser on top of chromium.](https://albertofdr.github.io/web-security-class/browser/custom.browser)
+-   [Web-to-App Communication.](https://albertofdr.github.io/web-security-class/browser/web.to.app)

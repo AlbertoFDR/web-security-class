@@ -23,7 +23,7 @@ According to their [website](https://www.chromium.org/Home/), _"Chromium is an o
 
 Chromium project also includes other open-source projects (OSS) like the following ones:
 
--   _ChromiumOS:_ Root repo of many for the Linux and web-based OS
+-   _ChromiumOS:_ Root repo of many for the Linux and web-based OS.
 -   _V8:_ JavaScript and WASM runtime. (NodeJS uses this)
 -   _Skia:_ Low level graphics
 -   _Angle:_ 3D graphics
@@ -37,7 +37,7 @@ For a complete list could be found at the [link](https://chromium.googlesource.c
 
 The important folders we should be aware of are ([link](https://www.chromium.org/developers/how-tos/getting-around-the-chrome-source-code/)):
 
--   _chrome:_ Application layer of Google Chrome.
+-   _chrome:_ Open-source application layer of Google Chrome ([code](https://source.chromium.org/chromium/chromium/src/+/main:chrome/)).
 -   _content:_ Multi-process sandboxed implementation of the web platform ([link](https://chromium.googlesource.com/chromium/src/+/HEAD/content/README.md)).
 -   _third_party/blink/:_ The web engine responsible for turning HTML, CSS and scripts into paint commands and other state changes. Web engine forked from WebKit.
 
@@ -148,6 +148,7 @@ bool ParseJSON(base::StringPiece json,
 
 If you want to learn more, just be _brave_ (ba dum tsss!) and take a look the real code of both projects. You could start searching for a specific behavior or checking the [examples](https://www.chromium.org/developers/how-tos/getting-around-the-chrome-source-code/#code-paths-for-common-operations) provided by developers. Also, I recommend you to start reading some of the design documents.
 
+### Thanks for reading
 If you have any recommendation/mistake/feedback, feel free to reach me [twitter](https://twitter.com/alberto_fdr) :)
 
 ## References:
@@ -155,3 +156,9 @@ If you have any recommendation/mistake/feedback, feel free to reach me [twitter]
 -   [Chromium project website](https://www.chromium.org/chromium-projects/)
 -   _Recommended:_ [Chromium Overview Video](https://www.youtube.com/watch?v=u11lbUWEeYI)
 -   _Recommended:_ [Chrome Comic Book](https://www.google.com/googlebooks/chrome/)
+
+## Other articles of the blog:
+
+-   [Everything you ever wanted to know about Web Tracking (but were afraid to ask).](https://albertofdr.github.io/web-security-class/advanced/web.tracking)
+-   [Web-to-App Communication.](https://albertofdr.github.io/web-security-class/browser/web.to.app)
+-   [Storage Partitioning 📂: From each according to his ability, to each according to his needs.](https://albertofdr.github.io/web-security-class/incoming/storage.partitioning)

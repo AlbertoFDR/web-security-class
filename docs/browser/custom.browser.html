@@ -10,7 +10,7 @@
 
 
 
-    <meta name="description" content="Web Security Educational Course">
+    <meta name="description" content="Web Security Educational Blog">
 
 
 
@@ -139,7 +139,7 @@
 
 <p>Chromium project also includes other open-source projects (OSS) like the following ones:</p>
 <ul>
-<li><em>ChromiumOS:</em> Root repo of many for the Linux and web-based OS</li>
+<li><em>ChromiumOS:</em> Root repo of many for the Linux and web-based OS.</li>
 <li><em>V8:</em> JavaScript and WASM runtime. (NodeJS uses this)</li>
 <li><em>Skia:</em> Low level graphics</li>
 <li><em>Angle:</em> 3D graphics</li>
@@ -150,7 +150,7 @@
 <p>For a complete list could be found at the <a target="_blank" rel="noopener" href="https://chromium.googlesource.com/">link</a>. Some of them are used as dependencies in the Chromium browser.</p>
 <h1 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code"></a>Source code</h1><p>The important folders we should be aware of are (<a target="_blank" rel="noopener" href="https://www.chromium.org/developers/how-tos/getting-around-the-chrome-source-code/">link</a>):</p>
 <ul>
-<li><em>chrome:</em> Application layer of Google Chrome.</li>
+<li><em>chrome:</em> Open-source application layer of Google Chrome (<a target="_blank" rel="noopener" href="https://source.chromium.org/chromium/chromium/src/+/main:chrome/">code</a>).</li>
 <li><em>content:</em> Multi-process sandboxed implementation of the web platform (<a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/HEAD/content/README.md">link</a>).</li>
 <li><em>third_party&#x2F;blink&#x2F;:</em> The web engine responsible for turning HTML, CSS and scripts into paint commands and other state changes. Web engine forked from WebKit.</li>
 </ul>
@@ -178,11 +178,16 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// File: brave-core/chromium_src/net/tools/transport_security_state_generator/input_file_parsers.cc</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ParseJSON ParseJSON_ChromiumImpl</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ParseCertificatesFile ParseCertificatesFile_ChromiumImpl</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;src/net/tools/transport_security_state_generator/input_file_parsers.cc&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">undef</span> ParseCertificatesFile</span></span><br><span class="line"><span class="meta">#<span class="keyword">undef</span> ParseJSON</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ParseCertificatesFile</span><span class="params">(base::StringPiece certs_input,</span></span></span><br><span class="line"><span class="params"><span class="function">                           Pinsets* pinsets,</span></span></span><br><span class="line"><span class="params"><span class="function">                           base::Time* timestamp)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    base::StringPiece brave_certs = <span class="string">R&quot;(RAW CERTIFICATES)&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">ParseCertificatesFile_ChromiumImpl</span>(brave_certs, pinsets, timestamp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ParseJSON</span><span class="params">(base::StringPiece json,</span></span></span><br><span class="line"><span class="params"><span class="function">               TransportSecurityStateEntries* entries,</span></span></span><br><span class="line"><span class="params"><span class="function">               Pinsets* pinsets)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Other stuff..</span></span><br><span class="line">    base::StringPiece brave_json = <span class="string">R&quot;(RAW JSON)&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">ParseJSON_ChromiumImpl</span>(brave_json, entries, pinsets);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h1 id="Final-words"><a href="#Final-words" class="headerlink" title="Final words"></a>Final words</h1><p>If you want to learn more, just be <em>brave</em> (ba dum tsss!) and take a look the real code of both projects. You could start searching for a specific behavior or checking the <a target="_blank" rel="noopener" href="https://www.chromium.org/developers/how-tos/getting-around-the-chrome-source-code/#code-paths-for-common-operations">examples</a> provided by developers. Also, I recommend you to start reading some of the design documents.</p>
-<p>If you have any recommendation&#x2F;mistake&#x2F;feedback, feel free to reach me <a target="_blank" rel="noopener" href="https://twitter.com/alberto_fdr">twitter</a> :)</p>
+<h3 id="Thanks-for-reading"><a href="#Thanks-for-reading" class="headerlink" title="Thanks for reading"></a>Thanks for reading</h3><p>If you have any recommendation&#x2F;mistake&#x2F;feedback, feel free to reach me <a target="_blank" rel="noopener" href="https://twitter.com/alberto_fdr">twitter</a> :)</p>
 <h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.chromium.org/chromium-projects/">Chromium project website</a></li>
 <li><em>Recommended:</em> <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=u11lbUWEeYI">Chromium Overview Video</a></li>
 <li><em>Recommended:</em> <a target="_blank" rel="noopener" href="https://www.google.com/googlebooks/chrome/">Chrome Comic Book</a></li>
+</ul>
+<h2 id="Other-articles-of-the-blog"><a href="#Other-articles-of-the-blog" class="headerlink" title="Other articles of the blog:"></a>Other articles of the blog:</h2><ul>
+<li><a href="https://albertofdr.github.io/web-security-class/advanced/web.tracking">Everything you ever wanted to know about Web Tracking (but were afraid to ask).</a></li>
+<li><a href="https://albertofdr.github.io/web-security-class/browser/web.to.app">Web-to-App Communication.</a></li>
+<li><a href="https://albertofdr.github.io/web-security-class/incoming/storage.partitioning">Storage Partitioning 📂: From each according to his ability, to each according to his needs.</a></li>
 </ul>
 
 </div> 
@@ -199,7 +204,7 @@
     <div class="flex-container">
         <div class="footer-text">
             
-                © 2022 bubu
+                © 2025 bubu
                 <br>
             
             

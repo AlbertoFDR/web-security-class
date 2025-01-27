@@ -165,6 +165,8 @@ The first version of the HTTP Cookies specification was published in 1997 as RFC
 
 In 1999, the specification was revised and published as [RFC 2965](https://www.rfc-editor.org/rfc/rfc2965), which added support for more advanced features such as `secure` cookies, which can only be sent over a secure HTTPS connection. In the case of `HttpOnly` flag, was added in 2011, by the [RFC 6265](https://www.rfc-editor.org/rfc/rfc6265#page-21)
 
+### Thanks for reading
+If you have any recommendation/mistake/feedback, feel free to reach me [twitter](https://twitter.com/alberto_fdr) :)
 
 ## References:
 
@@ -175,9 +177,11 @@ In 1999, the specification was revised and published as [RFC 2965](https://www.r
 - _Recommended:_ Huli Blog: [link to the blog](https://blog.huli.tw/2021/10/25/en/learn-frontend-from-security-pov/).
 - _Recommended:_ Cookie Bugs - by Ankur: [link to the blog](https://blog.ankursundara.com/cookie-bugs/).
 - _Recommended:_ The Cookie Monster in Your Browsers pptx - by @filedescriptor: [link](https://youtube.com/watch?v=njQcVWPB1is&list=PLQcbOyDFl_bfmSiby5wC0oRFSIK2c07SA&index=6).
+- _Recommended:_ Handling Cookies is a Minefield - by @April King: [link](https://grayduck.mn/2024/11/21/handling-cookies-is-a-minefield/).
 
 
+## Other articles of the blog:
 
-
-### Thanks for reading
-If you have any recommendation/mistake/feedback, feel free to reach me [twitter](https://twitter.com/alberto_fdr) :)
+-   [Everything you ever wanted to know about Web Tracking (but were afraid to ask).](https://albertofdr.github.io/web-security-class/advanced/web.tracking)
+-   [How to build your custom browser on top of chromium.](https://albertofdr.github.io/web-security-class/browser/custom.browser)
+-   [Web-to-App Communication.](https://albertofdr.github.io/web-security-class/browser/web.to.app)

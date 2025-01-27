@@ -126,6 +126,9 @@ Last but certainly not least, I'd like to touch on the subject of mental health.
 
 In conclusion, my aspiration for this blog is to facilitate the entry of newcomers into the field without overwhelming them in the process of exploration and learning. Additionally, this blog serves as a means for me to solidify my understanding by articulating intriguing concepts within the field, attempting to encapsulate over 20 years of web research into accessible blog posts.
 
+### Thanks for reading
+If you have any recommendation/mistake/feedback, feel free to reach me [twitter](https://twitter.com/alberto_fdr) :)
+
 ## References:
 
 -   _Recommended [Github Repo]:_ [A collection of awesome lists for hackers, pentesters & security researchers.](https://github.com/Hack-with-Github/Awesome-Hacking)
@@ -134,3 +137,10 @@ In conclusion, my aspiration for this blog is to facilitate the entry of newcome
 -   _Recommended [VIDEO]:_ [What is a CTF by CTFRadiooo](https://www.youtube.com/watch?v=aBKhuWTc1Eg)
 -   _Recommended [VIDEO]:_ [How to get into it, by CTFRadiooo](https://www.youtube.com/watch?v=UuKX5pbsA0o)
 -   _Recommended [Blog]:_ [Demystifying Browsers by Ericlaw](https://textslashplain.com/2020/02/09/demystifying-browsers/)
+
+## Other articles of the blog:
+
+-   [Understanding HTTP Cookies.](https://albertofdr.github.io/web-security-class/web.today/cookies)
+-   [How to build your custom browser on top of chromium.](https://albertofdr.github.io/web-security-class/browser/custom.browser)
+-   [Web-to-App Communication.](https://albertofdr.github.io/web-security-class/browser/web.to.app)
+
