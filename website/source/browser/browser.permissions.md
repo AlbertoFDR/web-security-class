@@ -413,6 +413,17 @@ No. The header is properly configured to restrict access to the self context.
 No. Access is explicitly disabled in the delegation.
 </div>
 
+| Extra | 
+|-------------|
+
+> Does the website have access to the camera? The website origin is `https://bubu.com/`.
+
+`Permissions-Policy: camera=(none *)`
+
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+Yes. The all directive takes precedence over disabling it.  
+</div>
+
 <div class="centered-text-browser-permissions">
 I bet you got at least one wrong!. 
 </div>
