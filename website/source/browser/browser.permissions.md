@@ -418,10 +418,10 @@ No. Access is explicitly disabled in the delegation.
 
 > Does the website have access to the camera? The website origin is `https://bubu.com/`.
 
-`Permissions-Policy: camera=(none)`
+`Permissions-Policy: camera=none`
 
 <div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
-No. You might think that <code>none</code> gets interpreted and the policy is applied, but the truth is that 'none' is invalid. However, since there are no other policies, it behaves like <code>camera=()</code>.
+No. You might think that <code>none</code> gets interpreted and the policy is applied, but the truth is that <code>none</code> is invalid. However, since there are no other policies, it behaves like <code>camera=()</code>.
 </div>
 
 | Extra 2 | 
@@ -432,7 +432,7 @@ No. You might think that <code>none</code> gets interpreted and the policy is ap
 `Permissions-Policy: camera=(none *)`
 
 <div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
-Yes. Again <code>none</code> is invalid and <code>\*</code> is applied..
+Yes. Again <code>none</code> is invalid and <code>*</code> is applied.
 </div>
 
 <div class="centered-text-browser-permissions">

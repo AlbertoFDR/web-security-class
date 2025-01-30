@@ -785,9 +785,9 @@ No. Access is explicitly disabled in the delegation.
 <blockquote>
 <p>Does the website have access to the camera? The website origin is <code>https://bubu.com/</code>.</p>
 </blockquote>
-<p><code>Permissions-Policy: camera=(none)</code></p>
+<p><code>Permissions-Policy: camera=none</code></p>
 <div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
-No. You might think that <code>none</code> gets interpreted and the policy is applied, but the truth is that 'none' is invalid. However, since there are no other policies, it behaves like <code>camera=()</code>.
+No. You might think that <code>none</code> gets interpreted and the policy is applied, but the truth is that <code>none</code> is invalid. However, since there are no other policies, it behaves like <code>camera=()</code>.
 </div>
 
 <table>
@@ -802,7 +802,7 @@ No. You might think that <code>none</code> gets interpreted and the policy is ap
 </blockquote>
 <p><code>Permissions-Policy: camera=(none *)</code></p>
 <div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
-Yes. Again <code>none</code> is invalid and <code>\*</code> is applied..
+Yes. Again <code>none</code> is invalid and <code>*</code> is applied.
 </div>
 
 <div class="centered-text-browser-permissions">
