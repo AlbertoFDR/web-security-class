@@ -418,10 +418,21 @@ No. Access is explicitly disabled in the delegation.
 
 > Does the website have access to the camera? The website origin is `https://bubu.com/`.
 
+`Permissions-Policy: camera=(none)`
+
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. You might think that <code>none</code> gets interpreted and the policy is applied, but the truth is that 'none' is invalid. However, since there are no other policies, it behaves like <code>camera=()</code>.
+</div>
+
+| Extra 2 | 
+|-------------|
+
+> Does the website have access to the camera? The website origin is `https://bubu.com/`.
+
 `Permissions-Policy: camera=(none *)`
 
 <div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
-Yes. The all directive takes precedence over disabling it.  
+Yes. Again <code>none</code> is invalid and <code>\*</code> is applied..
 </div>
 
 <div class="centered-text-browser-permissions">
@@ -456,7 +467,7 @@ The Permissions-Policy standard is a bit more complex and can be somewhat confus
 
 > This specification defines a mechanism that allows developers to selectively enable and disable use of various browser features and APIs.
 
-Starting with the structured header: this means that a misplaced comma (`camera=(),`) or any unexpected element can break the browser's serialization, causing it to remove the header. The consequence of this is that the website would function as if the header was never defined. For each permission, separated by a comma (`camera=(), microphone=()`), the header defines a set of directives, either individually (`camera=self`) or in groups (`camera=(self "https://bubu.com/")`), such as `self`, `src`, `none`, `*`, or a specific origin. For the allow attribute, permissions should be separated by a semicolon `;`. Moreover, the standard also defines how the default allowlist works, specifying that the default allowlist for any permission can only be `self` or `*` ([with `none` being considered as an option](https://github.com/w3c/webappsec-permissions-policy/issues/513)). This spec also defines how to check if a permission is allowed in your context. This is done using the `document.permissionsPolicy.*` (e.g., `document.permissionsPolicy.allowedFeatures()`) functions. As of January 2025, the functions are still part of the old Feature-Policy object, such as `document.featurePolicy.allowedFeatures()`. In this specification, the delegation using the `allow` tag is also included, and one important thing to note is the following:
+Starting with the structured header: this means that a misplaced comma (`camera=(),`) or any unexpected element can break the browser's serialization, causing it to remove the header. The consequence of this is that the website would function as if the header was never defined. For each permission, separated by a comma (`camera=(), microphone=()`), the header defines a set of directives, either individually (`camera=self`) or in groups (`camera=(self "https://bubu.com/")`), such as `self`, `*`, or a specific origin ([standard section](https://www.w3.org/TR/permissions-policy/#structured-header-serialization)). For the allow attribute, permissions should be separated by a semicolon `;` and, apart from `self` and `*`, you can also use `none` and `src`. Moreover, the standard also defines how the default allowlist works, specifying that the default allowlist for any permission can only be `self` or `*` ([with `none` being considered as an option](https://github.com/w3c/webappsec-permissions-policy/issues/513)). This spec also defines how to check if a permission is allowed in your context. This is done using the `document.permissionsPolicy.*` (e.g., `document.permissionsPolicy.allowedFeatures()`) functions. As of January 2025, the functions are still part of the old Feature-Policy object, such as `document.featurePolicy.allowedFeatures()`. In this specification, the delegation using the `allow` tag is also included, and one important thing to note is the following:
 
 > The allowlist for the features named in the attribute may be empty; in that case, the default value for the allowlist is 'src', which represents the origin of the URL in the iframe’s src attribute.
 
@@ -687,7 +698,7 @@ function showTable(index) {
 
 ### 7. Permissions-Policy Header vs Feature Policy Header
 
-The main difference, aside from the name, lies in the syntax used in the header. Take a look at these two examples:
+The main difference, aside from the name, lies in the syntax used in the header. Furthermore, in Permissions-Policy header `none` token is invalid. Take a look at these two examples:
 
 > Feature-Policy: camera 'self'; geolocation 'none'
 
@@ -757,6 +768,9 @@ As shown in the table and title, the key lies in using a headerless document. Th
 - [Reported issue in Permissions-Policy W3C Standard.](https://github.com/w3c/webappsec-permissions-policy/issues/552)
 - [Reported issue in HTML Standard issue.](https://github.com/whatwg/html/issues/10461)
 
+# Last thoughts
+
+As a simple conclusion, I'd like to write a few lines about the complexity of these mechanisms for developers. For example, implementing the Permissions Policy header can be error-prone—something as small as a misplaced comma can invalidate the entire header. This approach simplifies parsing on the browser side, and I'm not saying it's a bad thing, but developers should have tools—like [my own for generating the Permissions-Policy header](https://albertofdr.github.io/browser-permissions-tool/generator.html)—to help them effectively use these important security mechanisms.
 
 ## Thanks for reading
 

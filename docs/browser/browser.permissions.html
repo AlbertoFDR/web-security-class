@@ -785,9 +785,24 @@ No. Access is explicitly disabled in the delegation.
 <blockquote>
 <p>Does the website have access to the camera? The website origin is <code>https://bubu.com/</code>.</p>
 </blockquote>
+<p><code>Permissions-Policy: camera=(none)</code></p>
+<div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
+No. You might think that <code>none</code> gets interpreted and the policy is applied, but the truth is that 'none' is invalid. However, since there are no other policies, it behaves like <code>camera=()</code>.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Extra 2</th>
+</tr>
+</thead>
+</table>
+<blockquote>
+<p>Does the website have access to the camera? The website origin is <code>https://bubu.com/</code>.</p>
+</blockquote>
 <p><code>Permissions-Policy: camera=(none *)</code></p>
 <div style="filter: blur(10px); cursor: pointer;" onclick="this.style.filter='none'; this.style.cursor='default';">
-Yes. The all directive takes precedence over disabling it.  
+Yes. Again <code>none</code> is invalid and <code>\*</code> is applied..
 </div>
 
 <div class="centered-text-browser-permissions">
@@ -811,7 +826,7 @@ I bet you got at least one wrong!.
 <blockquote>
 <p>This specification defines a mechanism that allows developers to selectively enable and disable use of various browser features and APIs.</p>
 </blockquote>
-<p>Starting with the structured header: this means that a misplaced comma (<code>camera=(),</code>) or any unexpected element can break the browser’s serialization, causing it to remove the header. The consequence of this is that the website would function as if the header was never defined. For each permission, separated by a comma (<code>camera=(), microphone=()</code>), the header defines a set of directives, either individually (<code>camera=self</code>) or in groups (<code>camera=(self &quot;https://bubu.com/&quot;)</code>), such as <code>self</code>, <code>src</code>, <code>none</code>, <code>*</code>, or a specific origin. For the allow attribute, permissions should be separated by a semicolon <code>;</code>. Moreover, the standard also defines how the default allowlist works, specifying that the default allowlist for any permission can only be <code>self</code> or <code>*</code> (<a target="_blank" rel="noopener" href="https://github.com/w3c/webappsec-permissions-policy/issues/513">with <code>none</code> being considered as an option</a>). This spec also defines how to check if a permission is allowed in your context. This is done using the <code>document.permissionsPolicy.*</code> (e.g., <code>document.permissionsPolicy.allowedFeatures()</code>) functions. As of January 2025, the functions are still part of the old Feature-Policy object, such as <code>document.featurePolicy.allowedFeatures()</code>. In this specification, the delegation using the <code>allow</code> tag is also included, and one important thing to note is the following:</p>
+<p>Starting with the structured header: this means that a misplaced comma (<code>camera=(),</code>) or any unexpected element can break the browser’s serialization, causing it to remove the header. The consequence of this is that the website would function as if the header was never defined. For each permission, separated by a comma (<code>camera=(), microphone=()</code>), the header defines a set of directives, either individually (<code>camera=self</code>) or in groups (<code>camera=(self &quot;https://bubu.com/&quot;)</code>), such as <code>self</code>, <code>*</code>, or a specific origin (<a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions-policy/#structured-header-serialization">standard section</a>). For the allow attribute, permissions should be separated by a semicolon <code>;</code> and, apart from <code>self</code> and <code>*</code>, you can also use <code>none</code> and <code>src</code>. Moreover, the standard also defines how the default allowlist works, specifying that the default allowlist for any permission can only be <code>self</code> or <code>*</code> (<a target="_blank" rel="noopener" href="https://github.com/w3c/webappsec-permissions-policy/issues/513">with <code>none</code> being considered as an option</a>). This spec also defines how to check if a permission is allowed in your context. This is done using the <code>document.permissionsPolicy.*</code> (e.g., <code>document.permissionsPolicy.allowedFeatures()</code>) functions. As of January 2025, the functions are still part of the old Feature-Policy object, such as <code>document.featurePolicy.allowedFeatures()</code>. In this specification, the delegation using the <code>allow</code> tag is also included, and one important thing to note is the following:</p>
 <blockquote>
 <p>The allowlist for the features named in the attribute may be empty; in that case, the default value for the allowlist is ‘src’, which represents the origin of the URL in the iframe’s src attribute.</p>
 </blockquote>
@@ -1144,7 +1159,7 @@ function showTable(index) {
 </script>
 
 
-<h3 id="7-Permissions-Policy-Header-vs-Feature-Policy-Header"><a href="#7-Permissions-Policy-Header-vs-Feature-Policy-Header" class="headerlink" title="7. Permissions-Policy Header vs Feature Policy Header"></a>7. Permissions-Policy Header vs Feature Policy Header</h3><p>The main difference, aside from the name, lies in the syntax used in the header. Take a look at these two examples:</p>
+<h3 id="7-Permissions-Policy-Header-vs-Feature-Policy-Header"><a href="#7-Permissions-Policy-Header-vs-Feature-Policy-Header" class="headerlink" title="7. Permissions-Policy Header vs Feature Policy Header"></a>7. Permissions-Policy Header vs Feature Policy Header</h3><p>The main difference, aside from the name, lies in the syntax used in the header. Furthermore, in Permissions-Policy header <code>none</code> token is invalid. Take a look at these two examples:</p>
 <blockquote>
 <p>Feature-Policy: camera ‘self’; geolocation ‘none’</p>
 </blockquote>
@@ -1210,6 +1225,7 @@ function showTable(index) {
 <li><a target="_blank" rel="noopener" href="https://github.com/w3c/webappsec-permissions-policy/issues/552">Reported issue in Permissions-Policy W3C Standard.</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/whatwg/html/issues/10461">Reported issue in HTML Standard issue.</a></li>
 </ul>
+<h1 id="Last-thoughts"><a href="#Last-thoughts" class="headerlink" title="Last thoughts"></a>Last thoughts</h1><p>As a simple conclusion, I’d like to write a few lines about the complexity of these mechanisms for developers. For example, implementing the Permissions Policy header can be error-prone—something as small as a misplaced comma can invalidate the entire header. This approach simplifies parsing on the browser side, and I’m not saying it’s a bad thing, but developers should have tools—like <a href="https://albertofdr.github.io/browser-permissions-tool/generator.html">my own for generating the Permissions-Policy header</a>—to help them effectively use these important security mechanisms.</p>
 <h2 id="Thanks-for-reading"><a href="#Thanks-for-reading" class="headerlink" title="Thanks for reading"></a>Thanks for reading</h2><p>Part of this research was conducted in collaboration with the excellent researcher, <a target="_blank" rel="noopener" href="https://cispa.de/de/people/c01jara">Jannis</a>.<br>If you have any recommendation&#x2F;mistake&#x2F;feedback, feel free to reach me <a target="_blank" rel="noopener" href="https://twitter.com/alberto_fdr">twitter</a> :)</p>
 <h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ul>
 <li><em>Recommended:</em>  <a target="_blank" rel="noopener" href="https://textslashplain.com/2022/02/15/smarter-defaults-by-paying-attention/">Smarter Defaults by Paying Attention. ericlaw.</a></li>
