@@ -779,6 +779,8 @@ If you have any recommendation/mistake/feedback, feel free to reach me [twitter]
 
 ## References:
 
+-   [Browser Permission List.](https://albertofdr.github.io/browser-permissions-tool/index.html)
+-   [Permissions-Policy Header generator.](https://albertofdr.github.io/browser-permissions-tool/generator.html)
 -   _Recommended:_  [Smarter Defaults by Paying Attention. ericlaw.](https://textslashplain.com/2022/02/15/smarter-defaults-by-paying-attention/)
 -   _Recommended:_ [Browser Basics: User Gestures. ericlaw. ](https://textslashplain.com/2020/05/18/browser-basics-user-gestures/)
 -   [Permissions-Policy Standard](https://www.w3.org/TR/permissions-policy/)
