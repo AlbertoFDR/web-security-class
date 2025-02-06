@@ -815,6 +815,14 @@ I bet you got at least one wrong!.
   
 </details>
 
+<div class="column" title="Permissions-Policy Header 'Self' directive mandatory for delegation">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+        At this point (06-02-2025), <i>Self</i> directive is mandatory if we want to delegate permission to other iframes (<a target="_blank" rel="noopener" href="https://github.com/w3c/webappsec-permissions-policy/issues/480">Github Spec Issue</a>).
+    </div>
+  </div>
+</div>
+
 <p>With this first section, we now have a solid overview of how permissions work in today’s web ecosystem. Let’s dive into the standards that govern and explain this.</p>
 <h1 id="Permissions-W3C-Standards"><a href="#Permissions-W3C-Standards" class="headerlink" title="Permissions W3C Standards"></a>Permissions W3C Standards</h1><p>As of early 2025, two primary standards explain this: the <a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions/">Permissions Standard</a> and the <a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions-policy/">Permissions-Policy Standard</a>. Additionally, individual standards must specify whether a permission is powerful or policy-controlled. There is also a <a target="_blank" rel="noopener" href="https://w3c.github.io/permissions-registry/">Permission Registry standard</a>, but it has been <a target="_blank" rel="noopener" href="https://github.com/w3c/permissions-registry/issues/22">deprecated</a>. Significant changes to both standards can be expected in the coming months and years. Furthermore, some corner cases and core aspects of these standards remain in discussion among major browser vendors and developers.</p>
 <h2 id="Permissions-Standard"><a href="#Permissions-Standard" class="headerlink" title="Permissions Standard"></a><a target="_blank" rel="noopener" href="https://www.w3.org/TR/permissions/">Permissions Standard</a></h2><p>In simple terms, the Permissions Standard defines powerful permissions — or, as described in the specification:</p>

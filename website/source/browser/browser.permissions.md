@@ -445,6 +445,14 @@ I bet you got at least one wrong!.
   
 </details>
 
+<div class="column" title="Permissions-Policy Header 'Self' directive mandatory for delegation">
+  <div style="overflow: hidden">
+    <div style="float: left;">
+        At this point (06-02-2025), <i>Self</i> directive is mandatory if we want to delegate permission to other iframes (<a href="https://github.com/w3c/webappsec-permissions-policy/issues/480">Github Spec Issue</a>).
+    </div>
+  </div>
+</div>
+
 With this first section, we now have a solid overview of how permissions work in today’s web ecosystem. Let’s dive into the standards that govern and explain this.
 
 
