@@ -782,7 +782,7 @@ As a simple conclusion, I'd like to write a few lines about the complexity of th
 
 ## Thanks for reading
 
-Part of this research was conducted in collaboration with the excellent researcher, [Jannis](https://cispa.de/de/people/c01jara).
+Part of this research was conducted in collaboration with the excellent researcher, [Jannis](https://jannisbush.github.io/).
 If you have any recommendation/mistake/feedback, feel free to reach me [twitter](https://twitter.com/alberto_fdr) :)
 
 ## References:
