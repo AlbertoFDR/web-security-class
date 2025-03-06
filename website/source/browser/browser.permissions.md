@@ -46,8 +46,8 @@ It’s important to note that some permissions are special. For example, the per
 | camera   | ✅   |   ✅  |  `self`  |
 | geolocation   | ✅   |    ✅ |  `self`  |
 | gamepad   | ❌   |  ✅ | `*`  |
-| notifications   | ✅   |   ❌  |  ❌  |
-| push   | ✅   |   ❌  |  ❌  |
+| notifications   | ✅   |   ❌  |  N/A  |
+| push   | ✅   |   ❌  |  N/A |
 
 
 ## Powerful Permission
