@@ -752,7 +752,7 @@ Imagine that the website has a robust Content-Security-Policy but lacks a Permis
 The second type of attack I have in mind involves widgets with delegated permissions. Let’s imagine a very common widget from `bubuchat.com` that is embedded on thousands of pages, used by thousands of users every day. This widget, for certain functionalities, has delegated access to important permissions, such as `display-capture`. If an attacker is able to exploit this company and alter the widget, they would gain the ability to modify the code that has access to the permissions. In cases where the permission has not been granted yet, the attacker would only need to request the permission, because, as explained earlier, the prompt would display the website's name, not the widget’s.
 
 
-# Headerless Document Strikes Again
+# Local-Scheme Document Strikes Again
 
 As a final point, I'd like to mention a bypass I discovered due to a specification issue, which affects all Chromium-based browsers. Some of this, along with many other findings, may be published, if I'm lucky, in an academic paper.
 
@@ -760,7 +760,7 @@ In simple terms, there is a way to delegate a permission to a third party, even 
 
 
 
-|  | meet.com  |  headerless document (data: URI) |  | attacker.com |   
+|  | meet.com  |  Local-Scheme document (data: URI) |  | attacker.com |   
 |----------|----------|----------|----------|----------|
 
 
@@ -770,7 +770,7 @@ In simple terms, there is a way to delegate a permission to a third party, even 
 | Real | `camera=self` | ✅   | delegate (`allow=camera`)  |    ✅🐛  |
 
 
-As shown in the table and title, the key lies in using a headerless document. These documents, which lack response headers (hence the term 'headerless'), inherit headers in cases like Content-Security-Policy to prevent bypasses ([CSP Standard](https://w3c.github.io/webappsec-csp/#security-inherit-csp)). Currently, however, this does not happen with Permissions-Policy, allowing us to use this technique to bypass the 'self' restriction. This issue has been reported in the standard but remains unresolved, as you can see here:
+As shown in the table and title, the key lies in using a local-scheme document. These documents, defined in the [standard](https://fetch.spec.whatwg.org/#local-scheme), inherit headers in cases like Content-Security-Policy to prevent bypasses ([CSP Standard](https://w3c.github.io/webappsec-csp/#security-inherit-csp)). Currently, however, this does not happen with Permissions-Policy, allowing us to use this technique to bypass the 'self' restriction. This issue has been reported in the standard but remains unresolved, as you can see here:
 
 
 - [Reported issue in Permissions-Policy W3C Standard.](https://github.com/w3c/webappsec-permissions-policy/issues/552)
